@@ -16,7 +16,7 @@ languages:
       language-short: "中"
       sidebar:
         tags:
-          enable: true # default = true?
+          enable: false
           limit: 2 # limit showcasing only up to this number of tags in bio, defaults to 5
           more-text: "更多标签……" # show a hyperlink with this text if there's more tags than tags-limit
 
@@ -35,7 +35,7 @@ languages:
       language-short: "日"
       sidebar:
         tags:
-          enable: true # default = true?
+          enable: false
           limit: 2 # limit showcasing only up to this number of tags in bio, defaults to 5
           more-text: "その他のタグ。。。" # show a hyperlink with this text if there's more tags than tags-limit
 
