@@ -12,11 +12,6 @@
     {{ with .Site.GetPage "/sidebar/basic-info" }}
     <div class="small-box profile-info">
         {{ .Content }}
-        {{ with .Params.likes }}
-        <div class="profile-likes">
-            <p><span aria-hidden="true">❤️</span> {{ i18n "likes" }}{{ delimit . " · " }}</p>
-        </div>
-        {{ end }}
     </div>
     {{ end }}
     {{ if .Site.Params.sidebar.tags.enable }}
