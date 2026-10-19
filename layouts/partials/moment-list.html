@@ -3,7 +3,7 @@
     <div class="moment" id="moment-{{ .File.ContentBaseName }}">
         <span class="moment-marker" aria-hidden="true"></span>
         <div class="moment-body">
-            <div class="moment-meta"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006/01/02 · 15:04" }}</time></div>
+            <div class="moment-meta"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006/01/02 · 15:04:05" }}</time></div>
             <div class="moment-content">
                 {{ .Content }}
                 {{ with .Params.topics }}<div class="moment-topics">{{ range $index, $topic := . }}{{ if $index }} · {{ end }}#{{ $topic }}{{ end }}</div>{{ end }}
