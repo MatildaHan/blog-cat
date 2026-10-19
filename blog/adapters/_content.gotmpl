@@ -1,0 +1,129 @@
+{{- /* One bilingual Markdown source becomes one native Hugo page per language. */ -}}
+{{- .EnableAllLanguages -}}
+{{- $adapter := . -}}
+{{- $language := .Site.Language.Lang -}}
+{{- range resources.Match "bilingual/**.md" -}}
+  {{- $relative := strings.TrimPrefix "bilingual/" (strings.TrimPrefix "/" .Name) -}}
+  {{- $source := printf "blog/content/%s" $relative -}}
+  {{- $raw := replace .Content "\r\n" "\n" -}}
+  {{- $front := findRE `(?s)^---\n.*?\n---(?:\n|$)` $raw 1 -}}
+  {{- if not $front -}}
+    {{- errorf "%s: expected YAML front matter between --- lines" $source -}}
+    {{- continue -}}
+  {{- end -}}
+  {{- $header := index $front 0 -}}
+  {{- $yaml := replaceRE `(?s)^---\n(.*?)\n---(?:\n|$)$` "$1" $header -}}
+  {{- $metadata := dict -}}
+  {{- with try (transform.Unmarshal (dict "format" "yaml") $yaml) -}}
+    {{- with .Err -}}
+      {{- errorf "%s: invalid YAML front matter: %s" $source . -}}
+      {{- continue -}}
+    {{- else -}}
+      {{- $metadata = .Value -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not (reflect.IsMap $metadata) -}}
+    {{- errorf "%s: YAML front matter must be a map" $source -}}
+    {{- continue -}}
+  {{- end -}}
+  {{- if or (not (reflect.IsMap $metadata.translations)) (not $metadata.translations) -}}
+    {{- errorf "%s: translations must contain zh and/or jp metadata" $source -}}
+    {{- continue -}}
+  {{- end -}}
+
+  {{- $valid := true -}}
+  {{- range $lang, $translation := $metadata.translations -}}
+    {{- if or (not (in (slice "zh" "jp") $lang)) (not (reflect.IsMap $translation)) -}}
+      {{- errorf "%s: translations.%s must be a map for zh or jp" $source $lang -}}
+      {{- $valid = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $valid -}}{{- continue -}}{{- end -}}
+
+  {{- /* Only standalone markers outside fenced code blocks delimit languages. */ -}}
+  {{- $blocks := dict -}}
+  {{- $current := "" -}}
+  {{- $fence := "" -}}
+  {{- range split (strings.TrimPrefix $header $raw) "\n" -}}
+    {{- $line := . -}}
+    {{- $marker := findRE `^<!-- lang:[a-z-]+ -->$` $line -}}
+    {{- if and (not $fence) $marker -}}
+      {{- $current = replaceRE `^<!-- lang:([a-z-]+) -->$` "$1" $line -}}
+      {{- if not (in (slice "zh" "jp") $current) -}}
+        {{- errorf "%s: unsupported language marker %q" $source $current -}}
+      {{- end -}}
+      {{- if isset $blocks $current -}}
+        {{- errorf "%s: duplicate language marker %q" $source $current -}}
+      {{- end -}}
+      {{- $blocks = merge $blocks (dict $current "") -}}
+    {{- else -}}
+      {{- if $current -}}
+        {{- $blocks = merge $blocks (dict $current (printf "%s%s\n" (index $blocks $current) $line)) -}}
+      {{- else if strings.TrimSpace $line -}}
+        {{- errorf "%s: content must start with <!-- lang:zh --> or <!-- lang:jp -->" $source -}}
+      {{- end -}}
+      {{- if $fence -}}
+        {{- $closing := printf "^ {0,3}%s{%d,}[ \\t]*$" (substr $fence 0 1) (len $fence) -}}
+        {{- if findRE $closing $line -}}{{- $fence = "" -}}{{- end -}}
+      {{- else -}}
+        {{- with findRE "^ {0,3}(`{3,}|~{3,})" $line 1 -}}
+          {{- $fence = strings.TrimSpace (index . 0) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range $lang, $translation := $metadata.translations -}}
+    {{- if not (isset $blocks $lang) -}}
+      {{- errorf "%s: translations.%s is missing its <!-- lang:%s --> block" $source $lang $lang -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range $lang, $block := $blocks -}}
+    {{- if not (isset $metadata.translations $lang) -}}
+      {{- errorf "%s: language block %s is missing translations.%s metadata" $source $lang $lang -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if isset $metadata.translations $language -}}
+    {{- $fields := merge $metadata (index $metadata.translations $language) -}}
+    {{- $logical := strings.TrimSuffix ".md" $relative -}}
+    {{- $kind := "page" -}}
+    {{- if eq (path.Base $logical) "_index" -}}
+      {{- $logical = path.Dir $logical -}}
+      {{- $kind = "section" -}}
+    {{- end -}}
+    {{- $page := dict "path" $logical "kind" $kind "sitemap" (dict "priority" -1) "content" (dict "mediaType" "text/markdown" "value" (index $blocks $language)) -}}
+    {{- $params := or $fields.params (dict) -}}
+    {{- $dates := dict -}}
+    {{- $native := slice "aliases" "build" "cascade" "draft" "headless" "iscjklanguage" "keywords" "layout" "linktitle" "menus" "outputs" "resources" "sitemap" "slug" "summary" "title" "translationkey" "type" "url" "weight" -}}
+    {{- range $key, $value := $fields -}}
+      {{- $key = lower $key -}}
+      {{- if in (slice "date" "lastmod" "publishdate" "expirydate") $key -}}
+        {{- with try (time.AsTime $value) -}}
+          {{- with .Err -}}
+            {{- errorf "%s: invalid %s for %s: %s" $source $key $language . -}}
+          {{- else -}}
+            {{- $dates = merge $dates (dict $key .Value) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- else if eq $key "build" -}}
+        {{- $defaults := dict "render" "always" "list" "always" "publishResources" true -}}
+        {{- $page = merge $page (dict "build" (merge $defaults $value)) -}}
+      {{- else if in $native $key -}}
+        {{- $page = merge $page (dict $key $value) -}}
+      {{- else if not (in (slice "params" "translations") $key) -}}
+        {{- $params = merge $params (dict $key $value) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if and (eq $kind "page") (not $fields.headless) (not (strings.TrimSpace (index $blocks $language))) -}}
+      {{- errorf "%s: language block %s is empty; omit this translation until it is ready" $source $language -}}
+    {{- end -}}
+    {{- if and (eq $kind "page") (not $fields.title) (not $fields.headless) -}}
+      {{- errorf "%s: translations.%s.title is required" $source $language -}}
+    {{- end -}}
+    {{- if $fields.headless -}}
+      {{- $page = merge $page (dict "build" (dict "render" "never" "list" "never" "publishResources" false)) -}}
+    {{- end -}}
+    {{- $page = merge $page (dict "params" $params "dates" $dates) -}}
+    {{- $adapter.AddPage $page -}}
+  {{- end -}}
+{{- end -}}

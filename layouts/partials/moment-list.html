@@ -1,6 +1,6 @@
 <div class="moment-list">
     {{ range . }}
-    <div class="moment" id="moment-{{ .File.ContentBaseName }}">
+    <div class="moment" id="moment-{{ (path.Base .Path) }}">
         <span class="moment-marker" aria-hidden="true"></span>
         <div class="moment-body">
             <div class="moment-meta"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006/01/02 · 15:04:05" }}</time></div>

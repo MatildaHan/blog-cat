@@ -8,7 +8,6 @@ theme: "neopost"
 languages:
   zh:
     languageCode: zh-cn
-    contentDir: content/zh
     languageName: 中文
     title: "甜甜の博客"
     weight: 1
@@ -27,7 +26,6 @@ languages:
           less: "收起全文"
   jp:
     languageCode: ja-jp
-    contentDir: content/jp
     languageName: 日本語
     title: "甜甜のブログ"
     weight: 2
@@ -46,7 +44,7 @@ languages:
           less: "閉じる"
 
 permalinks:
-  posts: "/posts/:filename/"
+  posts: "/posts/:contentbasename/"
 
 params:
   # themes made by neopost: light-blue, dark-blue, light-green, light-yellow, light-pink, light-purple
@@ -57,3 +55,13 @@ params:
   moments-per-page: 2
   toc-auto-numbering: false
   tiantian: true
+
+# Read each bilingual source once per language; publish only the selected block.
+module:
+  mounts:
+    - source: content
+      target: assets/bilingual
+    - source: assets
+      target: assets
+    - source: adapters
+      target: content

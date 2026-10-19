@@ -4,8 +4,8 @@
 
 ## 内容与配置
 
-- [`blog/content/zh/`](blog/content/zh/)：中文内容；[`blog/content/jp/`](blog/content/jp/)：日语内容。
-- 各语言目录中的 `posts/` 存放文章，`moments/` 存放短动态，`sidebar/` 存放侧栏资料。
+- [`blog/content/`](blog/content/)：每项内容一份双语 MD，上半部分中文、下半部分日文；`posts/` 存放文章，`moments/` 存放短动态，`sidebar/` 存放侧栏资料。
+- [双语内容维护说明](docs/bilingual-content.md)：文件格式、新增内容、单语发布与构建检查。Hugo 构建时自动生成对应语言页面，无需维护两份 MD。
 - [`blog/static/`](blog/static/)：图片等静态资源。
 - [`blog/hugo.yaml`](blog/hugo.yaml)：站点、语言和分页配置。
 - [`blog/data/custom_themes.yaml`](blog/data/custom_themes.yaml)：自定义配色。
