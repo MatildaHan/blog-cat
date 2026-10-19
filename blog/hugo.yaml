@@ -1,4 +1,4 @@
-title: "猫咪の博客"
+title: "甜甜的博客"
 baseURL: 'https://blog-cat-5da.pages.dev/'
 languageCode: 'zh-cn'
 defaultContentLanguage: zh
@@ -10,7 +10,7 @@ languages:
     languageCode: zh-cn
     contentDir: content/zh
     languageName: 中文
-    title: "猫咪の博客"
+    title: "甜甜的博客"
     weight: 1
     params:
       language-short: "中"
@@ -29,7 +29,7 @@ languages:
     languageCode: ja-jp
     contentDir: content/jp
     languageName: 日本語
-    title: "ねこブログ"
+    title: "甜甜のブログ"
     weight: 2
     params:
       language-short: "日"
