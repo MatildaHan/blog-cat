@@ -1,0 +1,13 @@
+<div class="album-list">
+    {{ range . }}
+    <a class="album-card" href="{{ .RelPermalink }}">
+        {{ with index .Params.photos 0 }}
+        <img src="{{ .src | safeURL }}" alt="{{ .alt }}" loading="lazy"{{ with .width }} width="{{ . }}"{{ end }}{{ with .height }} height="{{ . }}"{{ end }}>
+        {{ end }}
+        <h3>{{ .Title }}</h3>
+        <div class="album-meta">{{ i18n "photo_count" (len .Params.photos) }}{{ if .Params.placeholder }} · {{ i18n "album_placeholder" }}{{ end }}</div>
+    </a>
+    {{ else }}
+    <p class="feed-empty">{{ i18n "no_albums" }}</p>
+    {{ end }}
+</div>

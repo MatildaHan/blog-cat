@@ -40,3 +40,13 @@ newer_record:
   other: "新しい記事"
 older_record:
   other: "古い記事"
+albums:
+  other: "ねこのアルバム"
+photo_count:
+  other: "{{ .Count }} 枚の写真"
+album_placeholder:
+  other: "仮のアルバム"
+no_albums:
+  other: "アルバムはまだありません。"
+view_original:
+  other: "元の写真を見る"

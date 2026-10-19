@@ -18,7 +18,8 @@ hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "htt
 
 ## 当前博客的内容维护
 
-- 首页的「喵喵动态」和「喵喵记录」各展示最新两条，右上角的「查看更多」进入对应列表。
+- 首页依次展示「喵喵瞬间」「喵喵动态」「喵喵记录」；相册展示最新三本，动态和记录各展示最新两条，右上角的「查看更多」进入对应列表。
+- 相册放在 `blog/content/zh/albums/`（日文为 `blog/content/jp/albums/`），每个 Markdown 文件对应一本相册及其详情页，列表每页六本。front matter 的 `photos` 数组维护照片，每项包含 `src`、`alt`，可选 `caption`、`width` 和 `height`；第一张照片作为封面，正文作为相册介绍，详情页点击照片可查看原图。目前 `avatar.md` 使用现有头像占位（`placeholder: true`）；有正式照片后替换照片、标题和介绍，并移除 `placeholder`。图片继续存放在 `blog/static/`，无需复制头像资源。
 - 短动态放在 `blog/content/zh/moments/`（日文为 `blog/content/jp/moments/`），直接展示 Markdown 全文；`topics` 是展示用标签。动态列表每页两条，不生成单条动态详情页。现有两条动态标注为示例，可直接替换。
 - 文章继续放在 `blog/content/zh/posts/` 和 `blog/content/jp/posts/`，记录列表每页两篇，点击标题进入原来的文章地址。
 - 年龄、生日、喜欢等资料统一放在各语言的 `sidebar/basic-info.md` 正文中，每项使用 `- 图标 名称：内容` 的 Markdown 列表格式；新增资料直接追加一行，显示顺序与文件中的顺序一致。旧 `welcome-header/` 内容保留为主题参考，首页不再显示欢迎板块。

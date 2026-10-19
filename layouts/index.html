@@ -2,6 +2,15 @@
 <div id="content" class="site-layout">
     {{ partial "sidebar.html" . }}
     <main class="site-main">
+        {{ with .Site.GetPage "/albums" }}
+        <section class="feed-panel albums-panel" aria-labelledby="albums-heading">
+            <div class="feed-heading">
+                <h2 id="albums-heading">{{ i18n "albums" }}</h2>
+                <a href="{{ .RelPermalink }}">{{ i18n "view_more" }} →</a>
+            </div>
+            {{ partial "album-list.html" (first 3 .RegularPages.ByDate.Reverse) }}
+        </section>
+        {{ end }}
         {{ with .Site.GetPage "/moments" }}
         <section class="feed-panel moments-panel" aria-labelledby="moments-heading">
             <div class="feed-heading">

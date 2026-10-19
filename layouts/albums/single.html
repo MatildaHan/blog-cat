@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div id="content" class="site-layout">
+    {{ partial "sidebar.html" . }}
+    <main class="site-main">
+        <article class="record-article album-article">
+            <div class="article-heading">
+                <div>
+                    <h2>{{ .Title }}</h2>
+                    <div class="album-meta">{{ i18n "photo_count" (len .Params.photos) }}{{ if .Params.placeholder }} · {{ i18n "album_placeholder" }}{{ end }}</div>
+                </div>
+                {{ with .Site.GetPage "/albums" }}<a href="{{ .RelPermalink }}">← {{ i18n "albums" }}</a>{{ end }}
+            </div>
+            <div class="article-body">{{ .Content }}</div>
+            <div class="album-photos">
+                {{ range .Params.photos }}
+                <figure>
+                    <a href="{{ .src | safeURL }}" target="_blank" rel="noopener" aria-label="{{ i18n "view_original" }}: {{ .alt }}">
+                        <img src="{{ .src | safeURL }}" alt="{{ .alt }}" loading="lazy"{{ with .width }} width="{{ . }}"{{ end }}{{ with .height }} height="{{ . }}"{{ end }}>
+                    </a>
+                    {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+                </figure>
+                {{ end }}
+            </div>
+        </article>
+    </main>
+</div>
+{{ end }}

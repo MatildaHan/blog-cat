@@ -40,3 +40,13 @@ newer_record:
   other: "上一篇"
 older_record:
   other: "下一篇"
+albums:
+  other: "喵喵瞬间"
+photo_count:
+  other: "{{ .Count }} 张照片"
+album_placeholder:
+  other: "占位相册"
+no_albums:
+  other: "还没有相册，喵。"
+view_original:
+  other: "查看原图"

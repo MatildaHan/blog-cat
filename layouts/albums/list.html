@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div id="content" class="site-layout">
+    {{ partial "sidebar.html" . }}
+    <main class="site-main">
+        {{ $paginator := .Paginate .RegularPages.ByDate.Reverse 6 }}
+        <section class="feed-panel albums-panel" aria-labelledby="albums-heading">
+            <div class="feed-heading">
+                <h2 id="albums-heading">{{ i18n "albums" }}</h2>
+                <a href="{{ .Site.Home.RelPermalink }}">← {{ i18n "back_home" }}</a>
+            </div>
+            {{ partial "album-list.html" $paginator.Pages }}
+        </section>
+        {{ partial "feed-pagination.html" $paginator }}
+    </main>
+</div>
+{{ end }}
