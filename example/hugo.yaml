@@ -1,5 +1,5 @@
-title: "cat blog!!"
-baseURL: 'https://neopost.neocities.org'
+title: "blog"
+baseURL: 'https://blog-cat-5da.pages.dev/'
 languageCode: 'en-us'
 titleCaseStyle: 'none' # comment this line for forcing capitalized titles on tags
 theme: "neopost"
@@ -47,6 +47,6 @@ params:
   # themes made by neopost: light-blue, dark-blue, light-green, light-yellow, light-pink, light-purple
   # but you can also create your colored theme at "/data/custom_themes.yaml"!
   theme: "meow"
-  favicon: "/favicon.ico"
+  favicon: "/icon.png"
   posts-per-page: 1 # defaults to 5 if not defined
   toc-auto-numbering: false

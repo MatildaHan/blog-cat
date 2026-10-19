@@ -17,21 +17,20 @@
             <img class="flower" src="{{ index .Params "icon-path" }}">
             {{ end }}
         </div>
-        
-        <div id="bio">
-        {{ with .Site.GetPage "section" "/sidebar/bio.md" }}
-            {{ .Content | safeHTML }}
-        {{ end }}
-        </div>
-        
-        <div class="small-box">
-            {{ with .Site.GetPage "section" "/sidebar/basic-info.md" }}
-                {{ .Content | safeHTML }}
-            {{ end }}
-            </ul>
-        </div>
 
-        {{ if .Site.Params.sidebar.tags.enable }}
+        {{ with .Site.GetPage "section" "/sidebar/bio.md" }}
+        {{ with .Content }}
+        <div id="bio">{{ . | safeHTML }}</div>
+        {{ end }}
+        {{ end }}
+
+        {{ with .Site.GetPage "section" "/sidebar/basic-info.md" }}
+        {{ with .Content }}
+        <div class="small-box">{{ . | safeHTML }}</div>
+        {{ end }}
+        {{ end }}
+
+        {{ if and .Site.Params.sidebar.tags.enable .Site.Taxonomies.tags }}
         <div>
             <div class="tags">
                 <p class="tags">Tags</p>
@@ -47,36 +46,46 @@
             <div class="tags">
                 <a href="{{ relLangURL (printf "/tags") }}"><b>{{ $more_tags_text }}</b></a>
             </div>
+            {{ end }}
         </div>
         {{ end }}
-        {{ end }}
-        
+
+        {{ with .Site.GetPage "section" "/sidebar/_index.md" }}
+        {{ with .Params.links }}
         <nav class="links">
             <ul>
-            {{ with .Site.GetPage "section" "/sidebar/_index.md" }}
-            {{ range .Params.links }}
+            {{ range . }}
                 <li><a href="{{ .link }}">{{ .name }}</a></li>
-            {{ end }}
             {{ end }}
             </ul>
         </nav>
+        {{ end }}
+        {{ end }}
     </aside>
     <main>
+        {{ with .Site.GetPage "section" "/welcome-header/_index.md" }}
+        {{ if or .Params.image .Params.title .Params.intro .Params.list.items }}
         <article id="top" class="clearfix">
-            {{ with .Site.GetPage "section" "/welcome-header/_index.md" }}
-            <section>
+            {{ if or .Params.image .Params.title .Params.intro }}
+            <section class="clearfix">
+            {{ with .Params.image }}
             <div class="img-right">
-                <img src="{{ .Params.image }}">
+                <img src="{{ . }}" alt="">
             </div>
+            {{ end }}
+            {{ if or .Params.title .Params.intro }}
             <div>
-            <h1>{{ .Params.title }}</h1>
+            {{ with .Params.title }}<h1>{{ . }}</h1>{{ end }}
             {{ range .Params.intro }}
                 <p>{{ . }}</p>
             {{ end }}
             </div>
+            {{ end }}
             </section>
+            {{ end }}
+            {{ if .Params.list.items }}
             <section>
-            <h4>{{ .Params.list.name }}</h4>
+            {{ with .Params.list.name }}<h4>{{ . }}</h4>{{ end }}
                 <ul>
                 {{ range .Params.list.items }}
                     <li>{{ . }}</li>
@@ -85,9 +94,12 @@
             </section>
             {{ end }}
         </article>
+        {{ end }}
+        {{ end }}
     {{ $limit := index (index .Site.Params "read-more") "length-limit" }}
     {{ $pages := where .Site.RegularPages "Section" "posts" }}
-    {{ range $index, $page := (.Paginate $pages (or (index .Site.Params "posts-per-page") 5)).Pages }}
+    {{ $paginator := .Paginate $pages (or (index .Site.Params "posts-per-page") 5) }}
+    {{ range $index, $page := $paginator.Pages }}
         <article id="post-{{ $index }}">
             {{- if (index .Params "table-of-contents") }}
             <button id="post-toc-btn-{{ $index }}" class="dropbox-btn" onclick="toggleDropbox('post-toc-{{ $index }}')" >☰</button>
@@ -138,7 +150,9 @@
             {{ end }}
         </article>
     {{ end }}
+    {{ if gt $paginator.TotalPages 1 }}
     {{ template "_internal/pagination.html" . }}
+    {{ end }}
     <script>
     window.addEventListener('click', e => {
         let dropboxs = document.getElementsByClassName("dropbox-content");
@@ -177,4 +191,5 @@
     }
     </script>
     </main>
+    </div>
 {{ end }}
