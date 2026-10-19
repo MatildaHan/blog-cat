@@ -455,17 +455,6 @@ body > header > h1 {
         padding: 14px;
     }
 
-    .site-layout #profile {
-        display: grid;
-        grid-template-columns: 76px minmax(0, 1fr);
-        align-items: center;
-        gap: 12px;
-    }
-
-    .site-layout #avatar {
-        margin: 0;
-    }
-
     .site-layout .flower {
         width: 76px;
     }
@@ -477,10 +466,7 @@ body > header > h1 {
     }
 
     .site-layout #bio::before {
-        top: 17px;
-        left: -10px;
-        border-top: 0;
-        border-bottom: 4px double var(--bg-color2);
+        left: calc(50% - 8px);
     }
 
     .site-layout #bio p + p {
