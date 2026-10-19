@@ -14,8 +14,7 @@
         {{ .Content }}
         {{ with .Params.likes }}
         <div class="profile-likes">
-            <p>{{ i18n "likes" }}</p>
-            <p>{{ delimit . " · " }}</p>
+            <p><span aria-hidden="true">❤️</span> {{ i18n "likes" }}{{ delimit . " · " }}</p>
         </div>
         {{ end }}
     </div>
