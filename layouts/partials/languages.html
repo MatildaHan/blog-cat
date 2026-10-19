@@ -1,9 +1,9 @@
 {{ if hugo.IsMultilingual }}
 <nav class="languages" aria-label="{{ i18n "language_switch" }}">
     <ul>
-    {{ range hugo.Sites }}
+    {{ range .Site.Home.AllTranslations }}
         {{ $language := .Language.Lang }}
-        {{ $target := .Home }}
+        {{ $target := . }}
         {{ range $.AllTranslations }}
             {{ if eq .Language.Lang $language }}{{ $target = . }}{{ end }}
         {{ end }}
