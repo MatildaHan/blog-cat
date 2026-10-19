@@ -16,6 +16,22 @@ body > header > h1 {
     border-radius: 999px;
 }
 
+.paw-icon,
+.site-layout .profile-info > ul > li::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -.1em;
+    background-color: var(--special-text-color);
+    -webkit-mask: url("{{ "paw.svg" | relURL }}") center / contain no-repeat;
+    mask: url("{{ "paw.svg" | relURL }}") center / contain no-repeat;
+}
+
+.site-layout .profile-info > ul > li::before {
+    margin-inline-end: .4em;
+}
+
 /* Extend the home link across the title card. */
 body > header > h1 a::after {
     content: "";
