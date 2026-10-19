@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 210 1000 600">
   <defs>
     <g id="paw">
-      <ellipse cx="3" cy="7" rx="2.2" ry="2.9" transform="rotate(-25 3 7)"/>
-      <ellipse cx="7.3" cy="3.4" rx="2.2" ry="2.9" transform="rotate(-8 7.3 3.4)"/>
-      <ellipse cx="12.7" cy="3.4" rx="2.2" ry="2.9" transform="rotate(8 12.7 3.4)"/>
-      <ellipse cx="17" cy="7" rx="2.2" ry="2.9" transform="rotate(25 17 7)"/>
-      <path d="M10 8C7.9 8 7.3 10.2 5.7 11.7C4.3 13 3.8 14.5 4.6 16C5.5 17.8 7.9 16.7 10 16.7C12.1 16.7 14.5 17.8 15.4 16C16.2 14.5 15.7 13 14.3 11.7C12.7 10.2 12.1 8 10 8Z"/>
+      <ellipse cx="15.5" cy="38.5" rx="10.5" ry="12.5" transform="rotate(-20 15.5 38.5)"/>
+      <ellipse cx="36" cy="20.5" rx="11" ry="14.5" transform="rotate(-8 36 20.5)"/>
+      <ellipse cx="64" cy="20.5" rx="11" ry="14.5" transform="rotate(8 64 20.5)"/>
+      <ellipse cx="84.5" cy="38.5" rx="10.5" ry="12.5" transform="rotate(20 84.5 38.5)"/>
+      <path d="M50 47C35 44 31 53 22 66C9 88 30 97 50 89C70 97 91 88 78 66C69 53 65 44 50 47Z"/>
     </g>
   </defs>
-  <use href="#paw" transform="translate(2 1) scale(.85) rotate(-35 10 10)"/>
-  <use href="#paw" transform="translate(21 22) scale(.85) rotate(-35 10 10)"/>
+  <use href="#paw" transform="translate(280 490) rotate(-15) scale(4.4) translate(-50 -50)"/>
+  <use href="#paw" transform="translate(760 540) rotate(10) scale(2.86) translate(-50 -50)"/>
 </svg>

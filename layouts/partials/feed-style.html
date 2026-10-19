@@ -24,8 +24,14 @@ body > header > h1 {
     height: 1em;
     vertical-align: -.1em;
     background-color: var(--special-text-color);
-    -webkit-mask: url("{{ "paw-pair.svg" | relURL }}") center / contain no-repeat;
-    mask: url("{{ "paw-pair.svg" | relURL }}") center / contain no-repeat;
+    -webkit-mask: url("{{ "paw.svg" | relURL }}") center / contain no-repeat;
+    mask: url("{{ "paw.svg" | relURL }}") center / contain no-repeat;
+}
+
+.paw-icon {
+    width: 1.6em;
+    -webkit-mask-image: url("{{ "paw-pair.svg" | relURL }}");
+    mask-image: url("{{ "paw-pair.svg" | relURL }}");
 }
 
 .site-layout .profile-info > ul > li::before {
