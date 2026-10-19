@@ -1,3 +1,23 @@
+# blog-cat
+
+我的博客内容统一放在 [`blog/`](blog/)：中文文章在 [`blog/content/zh/`](blog/content/zh/)，日文文章在 [`blog/content/jp/`](blog/content/jp/)，图片在 [`blog/static/`](blog/static/)，站点配置在 [`blog/hugo.yaml`](blog/hugo.yaml)。
+
+在仓库根目录预览：
+
+```sh
+hugo server --source blog --themesDir ../.. --theme "$(basename "$PWD")" --bind 127.0.0.1
+```
+
+Cloudflare Pages 的根目录留空，构建输出目录填写 `blog/public`，构建命令为：
+
+```sh
+hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "https://blog-cat-5da.pages.dev/" --gc --minify --buildFuture
+```
+
+本地与部署环境建议使用 Hugo Extended 0.156.0 或更高版本。以下保留上游 neopost 的原始使用说明及素材来源，其中 `example/` 指上游目录，本仓库使用 `blog/`。
+
+---
+
 # neopost
 
 本仓库的协作、验证及自动提交推送规则见 [项目规范（AGENTS.md）](AGENTS.md)。

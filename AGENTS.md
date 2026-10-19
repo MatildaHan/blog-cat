@@ -5,11 +5,11 @@
 ## 项目定位与结构
 
 - GitHub 仓库：<https://github.com/MatildaHan/blog-cat>，`origin` 应指向该仓库。
-- 当前项目是基于 neopost 的 Hugo 主题，附带示例博客；保留简洁、猫咪主题和 neocities 风格。
+- 当前项目是基于 neopost 的 Hugo 主题，博客内容存放在 `blog/`；保留简洁、猫咪主题和 neocities 风格。
 - `layouts/`：Hugo 模板；`layouts/partials/style.html`：主题样式；交互脚本目前也包含在页面模板中。
-- `data/themes.yaml`：内置配色；`example/data/custom_themes.yaml`：示例站点自定义配色。
-- `archetypes/`：新内容模板；`example/content/`：英语、日语示例文章与侧栏内容。
-- `example/hugo.yaml`、`example/static/`：示例站点配置与静态资源。
+- `data/themes.yaml`：内置配色；`blog/data/custom_themes.yaml`：博客站点自定义配色。
+- `archetypes/`：新内容模板；`blog/content/`：中文、日语文章与侧栏内容。
+- `blog/hugo.yaml`、`blog/static/`：博客站点配置与静态资源。
 - `config.toml`、`theme.toml`：Hugo 版本要求与主题元信息；`README.md` 保留原主题使用说明。
 - `.github/workflows/neocities.yml`：现有 main 推送部署流程；`netlify.toml`：现有 Netlify 配置。修改前先阅读实际配置。
 
@@ -17,7 +17,7 @@
 
 1. 只处理当前任务需要的内容，采用最小可维护改动；不顺带重构、升级依赖、切换框架或全仓格式化。
 2. 延续现有布局、配色和代码风格；视觉方向发生明显变化时，应来自用户需求。
-3. 页面文字与语言配置分开维护；涉及语言切换、路由或模板时，检查现有英语、日语站点，避免破坏多语言能力。
+3. 页面文字与语言配置分开维护；涉及语言切换、路由或模板时，检查现有中文、日语站点，避免破坏多语言能力。
 4. 修改配色时优先使用已有主题数据和 CSS 变量；修改内容时优先使用 Markdown、front matter 和配置。
 5. 保留 GPL-3.0 许可证、原作者信息和资源来源；新增第三方素材须确认使用许可并记录来源。
 6. 不提交密钥、令牌、个人配置或无关大文件；新增图片适度压缩，使用稳定清晰的文件名。
@@ -36,26 +36,26 @@
 按修改影响选择检查，不为纯文档或简单可逆改动引入额外测试框架。
 
 - 文档：检查链接、路径、命令及 `git diff --check`，不要求无关的站点构建。
-- 模板、样式、脚本、内容、主题数据或构建配置：执行 Hugo 示例站点构建，修复本次引入的错误。
+- 模板、样式、脚本、内容、主题数据或构建配置：执行 Hugo 博客站点构建，修复本次引入的错误。
 - 页面和交互：通过本地 HTTP 服务检查受影响页面；视觉修改至少检查桌面和约 375px 移动视口，关注溢出、图片、链接、控制台和多语言。
 - 根据影响验证首页、文章详情、标签、分页、目录和展开/收起等相关功能；无需每次重复检查无关路径。
 - 构建输出不提交。工具不可用、网络失败或现有问题导致无法验证时，明确记录未验证项，不宣称检查通过。
 
 当前 `config.toml` 要求 Hugo Extended >= 0.156.0；运行前用 `hugo version` 核对，后续以仓库配置为准。
 
-在仓库根目录构建示例（显式指定当前目录作为主题，适配本地目录名 `cat`）：
+在仓库根目录构建博客（显式指定当前目录作为主题，适配本地目录名 `cat`）：
 
 ```sh
-hugo --source example --themesDir ../.. --theme "$(basename "$PWD")" --gc --minify --buildFuture
+hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --gc --minify --buildFuture
 ```
 
 在仓库根目录启动预览：
 
 ```sh
-hugo server --source example --themesDir ../.. --theme "$(basename "$PWD")" --bind 127.0.0.1
+hugo server --source blog --themesDir ../.. --theme "$(basename "$PWD")" --bind 127.0.0.1
 ```
 
-现有 CI 使用主题名 `neopost`，其主题发现路径可能受 checkout 目录名影响。涉及部署修改时，应核对运行环境与主题路径，实际检查成功后才能声称部署通过。
+现有 CI 与本地命令均通过 checkout 目录名显式指定主题，博客源目录为 `blog/`。涉及部署修改时，应核对运行环境与主题路径，实际检查成功后才能声称部署通过。
 
 ## 提交与推送：默认自动执行
 
