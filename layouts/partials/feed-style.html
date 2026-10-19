@@ -56,7 +56,7 @@ body > header > h1 {
     width: auto;
     margin: 0;
     padding: 12px 13px;
-    border-radius: 25px;
+    border-radius: 10px;
     text-align: left;
     font-size: 12px;
 }
@@ -70,7 +70,9 @@ body > header > h1 {
 }
 
 .site-layout #bio::before {
-    top: -9px;
+    box-sizing: border-box;
+    border-radius: 0;
+    top: -10px;
     left: 39px;
     width: 16px;
     height: 16px;
@@ -446,32 +448,14 @@ body > header > h1 {
         padding: 14px;
     }
 
-    .site-layout #profile {
-        display: grid;
-        grid-template-columns: 76px minmax(0, 1fr);
-        align-items: center;
-        gap: 12px;
-    }
-
-    .site-layout #avatar {
-        margin: 0;
-    }
-
-    .site-layout .flower {
-        width: 76px;
-    }
-
     .site-layout #bio {
         padding: 8px;
-        border-radius: 18px;
+        border-radius: 10px;
         font-size: 11px;
     }
 
     .site-layout #bio::before {
-        top: 17px;
-        left: -9px;
-        border-top: 0;
-        border-bottom: 4px double var(--bg-color2);
+        left: calc(50% - 8px);
     }
 
     .site-layout #bio p + p {
