@@ -1,16 +1,18 @@
 {{ define "main" }}
     <div id="content">
     <aside id="sidebar">
-        <div id="avatar">
-            {{ with .Site.GetPage "section" "/sidebar/_index.md" }}
-            <img class="flower" src="{{ index .Params "icon-path" }}">
-            {{ end }}
-        </div>
+        <div id="profile">
+            <div id="avatar">
+                {{ with .Site.GetPage "section" "/sidebar/_index.md" }}
+                <img class="flower" src="{{ index .Params "icon-path" }}">
+                {{ end }}
+            </div>
         
-        <div id="bio">
-        {{ with .Site.GetPage "section" "/sidebar/bio.md" }}
-            {{ .Content | safeHTML }}
-        {{ end }}
+            <div id="bio">
+            {{ with .Site.GetPage "section" "/sidebar/bio.md" }}
+                {{ .Content | safeHTML }}
+            {{ end }}
+            </div>
         </div>
         
         <div class="small-box">

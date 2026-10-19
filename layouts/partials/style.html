@@ -324,12 +324,27 @@ a:hover {
 }
 
 #bio {
+    position: relative;
     margin: 20px;
     padding: .2em;
     background: var(--bg-color);
     border: 4px double var(--bg-color2);
     border-radius: 2em;
     font-size: small;
+}
+
+#bio::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    background: var(--bg-color);
+    border-top: 4px double var(--bg-color2);
+    border-left: 4px double var(--bg-color2);
+    transform: translateX(-50%) rotate(45deg);
+    pointer-events: none;
 }
 
 #bio p { margin: 1em; }
@@ -576,7 +591,12 @@ header h1 a:hover {
         flex-wrap: wrap;
         flex-direction: row;
     }
-    #bio {width: 50%;}
+    #profile {width: 100%;}
+    #avatar {margin-inline: auto;}
+    #bio {
+        width: 50%;
+        margin-inline: auto;
+    }
     
     #sidebar ul {
         line-height: 2em;
