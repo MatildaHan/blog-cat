@@ -103,8 +103,39 @@
     opacity: 1;
 }
 
-.tiantian[data-paused="true"] .tiantian__figure {
+.tiantian[data-paused="true"] .tiantian__figure,
+.tiantian[data-paused="true"] .tiantian__sleep {
     animation-play-state: paused;
+}
+
+.tiantian__sleep {
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 6px;
+    height: 28px;
+    align-items: flex-end;
+    gap: 2px;
+    color: var(--special-text-color);
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    pointer-events: none;
+    animation: tiantian-sleep 2.8s ease-in-out infinite;
+}
+
+.tiantian[data-state="resting"] .tiantian__sleep {
+    display: flex;
+}
+
+.tiantian__sleep span:nth-child(2) {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.tiantian__sleep span:nth-child(3) {
+    margin-bottom: 10px;
+    font-size: 16px;
 }
 
 .tiantian__collapse {
@@ -193,6 +224,11 @@
     50% { transform: translateY(-1px) scaleY(1.014); }
 }
 
+@keyframes tiantian-sleep {
+    0%, 100% { transform: translateY(0); opacity: 0.65; }
+    50% { transform: translateY(-4px); opacity: 1; }
+}
+
 @media (max-width: 800px) {
     .tiantian {
         --tiantian-size: 112px;
@@ -202,7 +238,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .tiantian__figure { animation: none; }
+    .tiantian__figure,
+    .tiantian__sleep { animation: none; }
     .tiantian__blink,
     .tiantian__idle,
     .tiantian__pose { transition: none; }
