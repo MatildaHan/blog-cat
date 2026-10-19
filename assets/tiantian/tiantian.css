@@ -1,7 +1,8 @@
 .tiantian {
     --tiantian-size: 136px;
     position: fixed;
-    right: max(16px, env(safe-area-inset-right));
+    left: max(16px, env(safe-area-inset-left));
+    right: auto;
     bottom: max(16px, env(safe-area-inset-bottom));
     width: var(--tiantian-size);
     z-index: 20;
@@ -19,11 +20,8 @@
 
 .tiantian__panel {
     position: relative;
-    padding: 8px;
-    border: 1px solid var(--outline-color);
-    border-radius: 20px;
-    background: white;
-    box-shadow: 0 4px 12px #00000015;
+    padding: 9px;
+    background: transparent;
 }
 
 .tiantian button {
@@ -45,7 +43,7 @@
     width: 100%;
     padding: 0;
     border: 0;
-    border-radius: 14px;
+    border-radius: 0;
     background: transparent;
     line-height: 0;
 }
@@ -86,16 +84,15 @@
 
 .tiantian__collapse {
     position: absolute;
-    top: -8px;
-    right: -6px;
+    top: 0;
+    right: 0;
     display: grid;
     place-items: center;
     width: 24px;
     height: 24px;
     padding: 0;
-    border: 1px solid var(--outline-color);
-    border-radius: 50%;
-    background: white;
+    border: 0;
+    background: transparent;
     z-index: 1;
 }
 
@@ -103,11 +100,9 @@
     display: block;
     width: 56px;
     height: 56px;
-    padding: 3px;
-    border: 2px solid var(--outline-color);
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 3px 10px #00000015;
+    padding: 0;
+    border: 0;
+    background: transparent;
 }
 
 .tiantian__launcher img {
@@ -115,7 +110,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 50%;
     pointer-events: none;
 }
 
@@ -127,7 +121,7 @@
 @media (max-width: 800px) {
     .tiantian {
         --tiantian-size: 112px;
-        right: max(12px, env(safe-area-inset-right));
+        left: max(12px, env(safe-area-inset-left));
         bottom: max(12px, env(safe-area-inset-bottom));
     }
 }
