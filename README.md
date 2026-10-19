@@ -12,6 +12,9 @@
 - [`blog/hugo.yaml`](blog/hugo.yaml)：域名、主题、开关和分页配置。
 - [`blog/data/custom_themes.yaml`](blog/data/custom_themes.yaml)：自定义配色。
 - [`layouts/`](layouts/)：页面模板。
+- [`designs/tiantian/`](designs/tiantian/)：保留的猫咪设计稿；正式组件资源在 [`assets/tiantian/`](assets/tiantian/)。
+
+构建产物 `blog/public/` 和资源缓存 `blog/resources/` 不纳入 Git，可在停止预览后清理，下次构建会按需生成。`.DS_Store` 等本地系统文件同样不纳入 Git。
 
 ## 本地预览
 

@@ -7,3 +7,4 @@
 /blog/themes
 .DS_Store
 /tests/__pycache__/
+/blog/resources/
