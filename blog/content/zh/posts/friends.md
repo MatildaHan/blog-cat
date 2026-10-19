@@ -4,7 +4,7 @@ date: "2025-01-29T21:05:11-03:00"
 tags: ["喵喵", "呼噜"]
 title-images: ["/photo1.png", "/photo2.png"]
 ending-images: ["/photo3.png", "/photo4.png", "/photo5.png"]
-author: "麻糬"
+author: "甜甜"
 draft: false
 ---
 喵呜，喵喵喵，呼噜！

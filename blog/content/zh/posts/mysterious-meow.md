@@ -4,7 +4,7 @@ date: "2025-02-01T10:00:00-03:00"
 tags: ["喵喵"]
 title-images: ["/photo6.png"]
 ending-images: []
-author: "麻糬"
+author: "甜甜"
 draft: false
 table-of-contents: true
 toc-auto-numbering: true
