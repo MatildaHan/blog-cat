@@ -56,3 +56,4 @@ params:
   posts-per-page: 2
   moments-per-page: 2
   toc-auto-numbering: false
+  tiantian: true

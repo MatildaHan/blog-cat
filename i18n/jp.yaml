@@ -40,3 +40,11 @@ newer_record:
   other: "新しい記事"
 older_record:
   other: "古い記事"
+tiantian_name:
+  other: "看板猫の甜甜"
+tiantian_blink:
+  other: "クリックして甜甜をまばたきさせる"
+tiantian_collapse:
+  other: "甜甜を小さくする"
+tiantian_expand:
+  other: "甜甜を表示する"

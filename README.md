@@ -29,6 +29,12 @@ hugo server --source blog --themesDir ../.. --theme "$(basename "$PWD")" --bind 
 hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "https://blog-cat-5da.pages.dev/" --gc --minify --buildFuture
 ```
 
+## 甜甜待机看板
+
+右下角的甜甜会轻微呼吸、偶尔眨眼，点击可主动眨眼；窄屏默认收起，点击猫头可展开。收起选择会在当前浏览器中保留。
+
+在 `blog/hugo.yaml` 中将 `params.tiantian` 设为 `false` 可关闭组件。[素材与动作说明](assets/tiantian/README.md)包含更新方式，交互检查命令为 `node --test tests/tiantian.test.cjs`。
+
 ## 来源与许可
 
 原主题由 [salatine](https://github.com/salatine) 开发，采用 [GPL-3.0 许可证](LICENSE)。原主题示例中的猫咪图片主要来自[美国国会图书馆](https://www.loc.gov/free-to-use/cats/)。协作规范见 [AGENTS.md](AGENTS.md)。

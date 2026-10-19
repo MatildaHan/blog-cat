@@ -1,0 +1,142 @@
+.tiantian {
+    --tiantian-size: 136px;
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: var(--tiantian-size);
+    z-index: 20;
+    pointer-events: none;
+}
+
+.tiantian[hidden],
+.tiantian [hidden] {
+    display: none;
+}
+
+.tiantian[data-collapsed="true"] {
+    width: 56px;
+}
+
+.tiantian__panel {
+    position: relative;
+    padding: 8px;
+    border: 1px solid var(--outline-color);
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 4px 12px #00000015;
+}
+
+.tiantian button {
+    box-sizing: border-box;
+    color: var(--special-text-color);
+    font: inherit;
+    cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
+}
+
+.tiantian button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+.tiantian__cat {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    line-height: 0;
+}
+
+.tiantian__figure {
+    display: block;
+    position: relative;
+    aspect-ratio: 1;
+    transform-origin: 50% 100%;
+    animation: tiantian-breathe 4.8s ease-in-out infinite;
+}
+
+.tiantian__figure img {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.tiantian__blink {
+    --eye-mask: radial-gradient(ellipse 9% 6.5% at 40% 43.5%, #000 80%, transparent 100%), radial-gradient(ellipse 8% 6.5% at 66% 41.5%, #000 80%, transparent 100%);
+    -webkit-mask-image: var(--eye-mask);
+    mask-image: var(--eye-mask);
+    opacity: 0;
+    transition: opacity 60ms ease;
+}
+
+.tiantian.is-blinking .tiantian__blink {
+    opacity: 1;
+}
+
+.tiantian[data-paused="true"] .tiantian__figure {
+    animation-play-state: paused;
+}
+
+.tiantian__collapse {
+    position: absolute;
+    top: -8px;
+    right: -6px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid var(--outline-color);
+    border-radius: 50%;
+    background: white;
+    z-index: 1;
+}
+
+.tiantian__launcher {
+    display: block;
+    width: 56px;
+    height: 56px;
+    padding: 3px;
+    border: 2px solid var(--outline-color);
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 3px 10px #00000015;
+}
+
+.tiantian__launcher img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes tiantian-breathe {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: translateY(-1px) scaleY(1.014); }
+}
+
+@media (max-width: 800px) {
+    .tiantian {
+        --tiantian-size: 112px;
+        right: max(12px, env(safe-area-inset-right));
+        bottom: max(12px, env(safe-area-inset-bottom));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tiantian__figure { animation: none; }
+    .tiantian__blink { transition: none; }
+}
+
+@media print {
+    .tiantian { display: none; }
+}
