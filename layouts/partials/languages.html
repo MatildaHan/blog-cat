@@ -7,7 +7,7 @@
         {{ range $.AllTranslations }}
             {{ if eq .Language.Lang $language }}{{ $target = . }}{{ end }}
         {{ end }}
-        <li><a href="{{ $target.RelPermalink }}" lang="{{ .Language.LanguageCode }}" hreflang="{{ .Language.LanguageCode }}"{{ if eq $.Site.Language.Lang $language }} aria-current="page"{{ end }}>{{ .Language.LanguageName }}</a></li>
+        <li><a href="{{ $target.RelPermalink }}" lang="{{ .Language.LanguageCode }}" hreflang="{{ .Language.LanguageCode }}" aria-label="{{ .Language.LanguageName }}" title="{{ .Language.LanguageName }}"{{ if eq $.Site.Language.Lang $language }} aria-current="page"{{ end }}>{{ or (index .Site.Params "language-short") .Language.LanguageName }}</a></li>
     {{ end }}
     </ul>
 </nav>

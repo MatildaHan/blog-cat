@@ -223,9 +223,12 @@ nav.languages {
 
 nav.languages ul {
     display: flex;
-    gap: .4rem;
+    gap: .15rem;
     margin: 0;
-    padding: 0;
+    padding: .15rem;
+    border: 2px solid var(--outline-color);
+    border-radius: .6rem;
+    background-color: var(--bg-color2);
 }
 
 nav.languages li {
@@ -234,12 +237,22 @@ nav.languages li {
 
 nav.languages a {
     display: block;
+    min-width: 2.25rem;
     padding: .35rem .65rem;
-    border: 2px solid var(--outline-color);
-    background-color: var(--bg-color2);
+    border-radius: .35rem;
     color: var(--link-color);
     font-weight: bold;
+    text-align: center;
     text-decoration: none;
+}
+
+nav.languages a:hover {
+    background-color: var(--select-color);
+}
+
+nav.languages a:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
 }
 
 nav.languages a[aria-current="page"] {

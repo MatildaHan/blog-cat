@@ -13,6 +13,7 @@ languages:
     title: "猫咪博客"
     weight: 1
     params:
+      language-short: "中"
       sidebar:
         tags:
           enable: true # default = true?
@@ -31,6 +32,7 @@ languages:
     title: "ねこブログ"
     weight: 2
     params:
+      language-short: "日"
       sidebar:
         tags:
           enable: true # default = true?
