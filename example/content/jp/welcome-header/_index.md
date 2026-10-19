@@ -1,9 +1,14 @@
 ---
 headless: true
-title: ""
-intro: []
+title: "ブログようこそ〜！"
+intro: 
+  - "これは紹介例です。自由にカスタマイズしてください。"
+  - "パーソナライズするには行を追加してください。"
 image: "/cat.png"
 list:
-  name: ""
-  items: []
+  name: "好きなもの："
+  items: 
+    - "コーディング"
+    - "猫"
+    - "こーひー"
 ---
