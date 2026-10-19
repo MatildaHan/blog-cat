@@ -4,16 +4,27 @@
 {{ $idle := resources.Get "tiantian/idle.png" | fingerprint }}
 {{ $blink := resources.Get "tiantian/blink.png" | fingerprint }}
 {{ $collapsed := resources.Get "tiantian/collapsed.png" | fingerprint }}
+{{ $petting := resources.Get "tiantian/petting.png" | fingerprint }}
+{{ $resting := resources.Get "tiantian/resting.png" | fingerprint }}
+{{ $speaking := resources.Get "tiantian/speaking.png" | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-<aside id="tiantian" class="tiantian" aria-label="{{ partial "text.html" "tiantian_name" }}" hidden>
+<aside id="tiantian" class="tiantian" aria-label="{{ partial "text.html" "tiantian_name" }}" data-pet-label="{{ partial "text.html" "tiantian_pet" }}" data-wake-label="{{ partial "text.html" "tiantian_wake_label" }}" data-rest-text="{{ partial "text.html" "tiantian_rest" }}" data-wake-text="{{ partial "text.html" "tiantian_wake" }}" hidden>
+    <span class="tiantian__bubble" role="status" aria-live="polite" aria-atomic="true" hidden>{{ partial "text.html" "tiantian_meow" }}</span>
     <div id="tiantian-panel" class="tiantian__panel">
-        <button class="tiantian__collapse" type="button" aria-label="{{ partial "text.html" "tiantian_collapse" }}" aria-controls="tiantian-panel" title="{{ partial "text.html" "tiantian_collapse" }}">−</button>
-        <button class="tiantian__cat" type="button" aria-label="{{ partial "text.html" "tiantian_blink" }}" title="{{ partial "text.html" "tiantian_blink" }}">
+        <button class="tiantian__collapse" type="button" aria-label="{{ partial "text.html" "tiantian_collapse" }}" aria-controls="tiantian-panel" title="{{ partial "text.html" "tiantian_collapse" }}">{{ partial "text.html" "tiantian_collapse_short" }}</button>
+        <button class="tiantian__cat" type="button" aria-label="{{ partial "text.html" "tiantian_pet" }}" title="{{ partial "text.html" "tiantian_pet" }}">
             <span class="tiantian__figure">
                 <img class="tiantian__idle" src="{{ $idle.RelPermalink }}" width="320" height="320" alt="" decoding="async">
                 <img class="tiantian__blink" src="{{ $blink.RelPermalink }}" width="320" height="320" alt="" aria-hidden="true" decoding="async">
+                <img class="tiantian__pose tiantian__pose--petting" src="{{ $petting.RelPermalink }}" width="320" height="320" alt="" aria-hidden="true" decoding="async">
+                <img class="tiantian__pose tiantian__pose--resting" src="{{ $resting.RelPermalink }}" width="320" height="320" alt="" aria-hidden="true" decoding="async">
+                <img class="tiantian__pose tiantian__pose--speaking" src="{{ $speaking.RelPermalink }}" width="320" height="320" alt="" aria-hidden="true" decoding="async">
             </span>
         </button>
+        <div class="tiantian__actions">
+            <button class="tiantian__rest" type="button" aria-pressed="false">{{ partial "text.html" "tiantian_rest" }}</button>
+            <button class="tiantian__speak" type="button">{{ partial "text.html" "tiantian_speak" }}</button>
+        </div>
     </div>
     <button class="tiantian__launcher" type="button" aria-label="{{ partial "text.html" "tiantian_expand" }}" aria-controls="tiantian-panel" aria-expanded="false" title="{{ partial "text.html" "tiantian_expand" }}" hidden>
         <img src="{{ $collapsed.RelPermalink }}" width="128" height="128" alt="" decoding="async">

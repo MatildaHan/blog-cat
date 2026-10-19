@@ -31,9 +31,11 @@ hugo server --source blog --themesDir ../.. --theme "$(basename "$PWD")" --bind 
 hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "https://blog-cat-5da.pages.dev/" --gc --minify --buildFuture
 ```
 
-## 甜甜待机看板
+## 甜甜互动看板
 
-左下角的甜甜会轻微呼吸、偶尔眨眼，点击可主动眨眼；窄屏默认收起，点击猫头可展开。收起选择会在当前浏览器中保留。
+左下角的甜甜会轻微呼吸、偶尔眨眼；点击猫咪可摸头，点击“休息”可打盹，再点猫咪或“唤醒”可叫醒。待机 45 秒后自动休息；点击“说话”会张嘴并显示约 3 秒的“喵喵喵”气泡。
+
+点击猫咪右上方的“收起”会变成小猫头，点击猫头重新展开。窄屏首次访问默认收起，选择在当前浏览器中保留，中日页面共用。
 
 在 `blog/hugo.yaml` 中将 `params.tiantian` 设为 `false` 可关闭组件。[素材与动作说明](assets/tiantian/README.md)包含更新方式，交互检查命令为 `node --test tests/tiantian.test.cjs`。
 

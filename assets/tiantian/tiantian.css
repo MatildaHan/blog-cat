@@ -74,6 +74,31 @@
     transition: opacity 60ms ease;
 }
 
+.tiantian__pose {
+    opacity: 0;
+}
+
+.tiantian__idle,
+.tiantian__pose {
+    transition: opacity 90ms ease;
+}
+
+.tiantian[data-pose="petting"] .tiantian__idle,
+.tiantian[data-pose="resting"] .tiantian__idle,
+.tiantian[data-pose="speaking"] .tiantian__idle {
+    opacity: 0;
+}
+
+.tiantian[data-pose="petting"] .tiantian__pose--petting,
+.tiantian[data-pose="resting"] .tiantian__pose--resting,
+.tiantian[data-pose="speaking"] .tiantian__pose--speaking {
+    opacity: 1;
+}
+
+.tiantian[data-state="resting"] .tiantian__figure {
+    animation-duration: 6.4s;
+}
+
 .tiantian.is-blinking .tiantian__blink {
     opacity: 1;
 }
@@ -84,13 +109,13 @@
 
 .tiantian__collapse {
     position: absolute;
-    top: 0;
+    top: -8px;
     right: 0;
     display: grid;
     place-items: center;
-    width: 24px;
+    min-width: 32px;
     height: 24px;
-    padding: 0;
+    padding: 0 3px;
     border: 0;
     background: transparent;
     z-index: 1;
@@ -113,6 +138,56 @@
     pointer-events: none;
 }
 
+.tiantian__actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 2px;
+}
+
+.tiantian__actions button {
+    padding: 1px 2px;
+    border: 0;
+    background: transparent;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.tiantian__actions button:hover,
+.tiantian__collapse:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.tiantian__bubble {
+    position: absolute;
+    left: 8px;
+    bottom: calc(100% - 12px);
+    max-width: min(180px, calc(100vw - 40px));
+    padding: 6px 10px;
+    border: 1px solid var(--outline-color);
+    border-radius: 14px;
+    background: var(--bg-color2);
+    color: var(--special-text-color);
+    font-size: 13px;
+    line-height: 1.5;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.tiantian__bubble::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    bottom: -5px;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid var(--outline-color);
+    border-bottom: 1px solid var(--outline-color);
+    background: var(--bg-color2);
+    transform: rotate(45deg);
+}
+
 @keyframes tiantian-breathe {
     0%, 100% { transform: scaleY(1); }
     50% { transform: translateY(-1px) scaleY(1.014); }
@@ -128,7 +203,9 @@
 
 @media (prefers-reduced-motion: reduce) {
     .tiantian__figure { animation: none; }
-    .tiantian__blink { transition: none; }
+    .tiantian__blink,
+    .tiantian__idle,
+    .tiantian__pose { transition: none; }
 }
 
 @media print {
