@@ -12,7 +12,7 @@
 | 左侧个人简介 | [bio.md](../blog/content/sidebar/bio.md) | 中文正文在上，日文正文在下 |
 | 左侧链接名称、链接地址与共用头像 | [sidebar/_index.md](../blog/content/sidebar/_index.md) | 名称按 `translations.zh/jp` 区分；共用值放顶层 |
 | 文章标题、标签、摘要和正文 | 每篇自己的 [posts/](../blog/content/posts/) 下的 MD | 标题与标签放 `translations.zh/jp`；正文上下分段 |
-| 动态标题、话题和正文 | 每条自己的 [moments/](../blog/content/moments/) 下的 MD | 标题与话题放 `translations.zh/jp`；正文上下分段 |
+| 动态标题和正文 | 每条自己的 [moments/](../blog/content/moments/) 下的 MD | 标题放 `translations.zh/jp`；正文上下分段 |
 | 栏目页面标题 | 对应目录的 `_index.md` | `translations.zh.title` 和 `translations.jp.title`，同时用于首页栏目、列表标题和文章返回链接 |
 
 网站标题与界面短文字使用双语 YAML，文章和侧栏正文使用双语 Markdown。技术配置（域名、主题、开关、分页条数）保留在 `blog/hugo.yaml`；不需要再到两份语言文件中分别修改同一项内容。
@@ -22,7 +22,7 @@
 ## 内容规则
 
 - 首页的「喵喵动态」和「喵喵记录」各展示最新两条，右上角的「查看更多」进入对应列表。
-- 短动态放在 `blog/content/moments/`，直接展示当前语言的 Markdown 全文；`topics` 是展示用标签。动态列表每页两条，不生成单条动态详情页。现有两条动态标注为示例，可直接替换。
+- 短动态放在 `blog/content/moments/`，展示时间和当前语言的 Markdown 全文，不显示标签。动态列表每页两条，不生成单条动态详情页。
 - 文章放在 `blog/content/posts/`，记录列表每页两篇；中文文章地址仍为 `/posts/文件名/`，日文为 `/jp/posts/文件名/`。修改标题不会改变地址。
 - 年龄、生日、喜欢等资料放在 `blog/content/sidebar/basic-info.md` 对应语言的正文中，每项使用 `- 图标 名称：内容` 的 Markdown 列表格式；新增资料直接追加一行。`sidebar/bio.md` 是简介，`sidebar/_index.md` 是头像与链接。
 - 旧 `blog/content/welcome-header/` 保留为主题参考，首页不显示欢迎板块。
@@ -58,7 +58,7 @@ translations:
 ```
 
 - 新增内容时，在相应目录新建 MD，参考上面的格式或复制一份现有双语文件，再修改文件名、日期、标题和正文。上游说明中的 `hugo new` 用于原主题的独立语言文件，不适用于本博客的双语源文件。
-- 公共信息只维护一次；语言块里的同名字段可以覆盖公共值，例如分别指定 `description`、`tags`、`topics` 或 `draft`。
+- 公共信息只维护一次；语言块里的同名字段可以覆盖公共值，例如分别指定 `description`、`tags` 或 `draft`。
 - 语言标记必须单独占一行，严格使用 `<!-- lang:zh -->`、`<!-- lang:jp -->`，每种语言最多出现一次。围栏代码块中的相同文字作为示例保留，不会触发拆分。
 - `<!--more-->` 分别写在各自正文中；目录、摘要、标签和 RSS 从当前语言内容生成。
 - 尚未完成日文翻译时，同时省略 `translations.jp` 和整个日文正文块，只发布中文；当前语言按钮保持原有行为，缺少对应翻译时前往该语言首页。

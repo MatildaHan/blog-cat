@@ -3,12 +3,8 @@ date: '2026-10-19T22:07:48+08:00'
 translations:
   zh:
     title: 在床角睡着啦
-    topics:
-    - 随手记
   jp:
     title: ベッドのすみで寝ちゃった
-    topics:
-    - メモ
 ---
 <!-- lang:zh -->
 妈妈在编辑更改博客，甜甜我呀，在床角趴着睡着啦
