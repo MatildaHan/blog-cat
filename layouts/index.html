@@ -44,7 +44,13 @@
             <ul>
             {{ with .Site.GetPage "section" "/sidebar/_index.md" }}
             {{ range .Params.links }}
-                <li><a href="{{ .link }}">{{ .name }}</a></li>
+                <li>
+                    {{ if .link }}
+                    <a href="{{ .link }}">{{ .name }}</a>
+                    {{ else }}
+                    <button type="button" disabled>{{ .name }}</button>
+                    {{ end }}
+                </li>
             {{ end }}
             {{ end }}
             </ul>

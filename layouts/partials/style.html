@@ -200,12 +200,22 @@ nav.links li {
     list-style-type: none;
 }
 
-nav.links li > a {
+nav.links li > a,
+nav.links li > button {
     font-weight: bold;
     background-color: var(--bg-color);
     border: 4px double var(--outline-color);
     padding: .5em 3em;
     text-decoration: none;
+}
+
+nav.links li > button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal;
+    color: var(--link-color);
+    border-radius: .3em;
+    cursor: default;
 }
 
 nav.links li > a:visited {color: var(--link-color);}
