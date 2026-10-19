@@ -1,15 +1,4 @@
 {{ define "main" }}
-    {{ if .IsTranslated }}
-    <nav class="languages links">
-        <ul>
-        {{ range .Translations }}
-        <li>
-            <a href="{{ .RelPermalink }}">{{ or (.Language.LanguageName) (.Language.Lang) }}</a>
-        </li>
-        {{ end }}
-        </ul>
-    </nav>
-    {{ end }}
     <div id="content">
     <aside id="sidebar">
         <div id="avatar">
@@ -34,7 +23,7 @@
         {{ if .Site.Params.sidebar.tags.enable }}
         <div>
             <div class="tags">
-                <p class="tags">Tags</p>
+                <p class="tags">{{ i18n "tags" }}</p>
             </div>
 
             <ul class="tags">
@@ -97,7 +86,7 @@
             {{ end }}
             <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
             {{ $tags := $page.Params.tags }}
-            tags:
+            {{ i18n "tags" }}：
             {{ range $index, $tag := .Params.tags }}
             <a href="{{ relLangURL (printf "/tags/%s" $tag) }}">{{ $tag }}</a>{{ if ne $index (sub ($tags | len) 1) }},{{ end }}
             {{ end }}

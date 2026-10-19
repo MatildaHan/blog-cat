@@ -1,31 +1,34 @@
-title: "cat blog!!"
-baseURL: 'https://neopost.neocities.org'
-languageCode: 'en-us'
+title: "猫咪博客"
+baseURL: 'https://blog-cat-5da.pages.dev/'
+languageCode: 'zh-cn'
+defaultContentLanguage: zh
 titleCaseStyle: 'none' # comment this line for forcing capitalized titles on tags
 theme: "neopost"
 
 languages:
-  en:
-    languageCode: en-us
-    contentDir: content/en
-    languageName: english
+  zh:
+    languageCode: zh-cn
+    contentDir: content/zh
+    languageName: 中文
+    title: "猫咪博客"
     weight: 1
     params:
       sidebar:
         tags:
           enable: true # default = true?
           limit: 2 # limit showcasing only up to this number of tags in bio, defaults to 5
-          more-text: "more tags..." # show a hyperlink with this text if there's more tags than tags-limit
+          more-text: "更多标签……" # show a hyperlink with this text if there's more tags than tags-limit
 
       read-more:
-        length-limit: 120 # if the text exceeds this number of characters, the read more button will appear to expand the text
+        length-limit: 40 # if the text exceeds this number of characters, the read more button will appear to expand the text
         text:
-          more: "read more"
-          less: "read less"
+          more: "展开全文"
+          less: "收起全文"
   jp:
     languageCode: ja-jp
     contentDir: content/jp
     languageName: 日本語
+    title: "ねこブログ"
     weight: 2
     params:
       sidebar:
@@ -38,7 +41,7 @@ languages:
         length-limit: 80 # if the text exceeds this number of characters, the read more button will appear to expand the text
         text:
           more: "もっと読む"
-          less: "もっと読む"
+          less: "閉じる"
 
 permalinks:
   posts: "/posts/:filename/"
