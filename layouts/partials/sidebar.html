@@ -1,0 +1,45 @@
+<aside id="sidebar" aria-label="{{ i18n "about" }}">
+    <div id="profile">
+        <div id="avatar">
+            {{ with .Site.GetPage "/sidebar" }}
+            <img class="flower" src="{{ index .Params "icon-path" }}" alt="{{ i18n "avatar" }}" width="300" height="300">
+            {{ end }}
+        </div>
+        <div id="bio">
+            {{ with .Site.GetPage "/sidebar/bio" }}{{ .Content }}{{ end }}
+        </div>
+    </div>
+    {{ with .Site.GetPage "/sidebar/basic-info" }}
+    <div class="small-box profile-info">
+        {{ .Content }}
+        {{ with .Params.likes }}
+        <div class="profile-likes">
+            <p>{{ i18n "likes" }}</p>
+            <p>{{ delimit . " · " }}</p>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+    {{ if .Site.Params.sidebar.tags.enable }}
+    <div class="profile-tags">
+        <div class="tags"><p class="tags">{{ i18n "tags" }}</p></div>
+        {{ $limit := or (index .Site.Params.sidebar.tags "limit") 5 }}
+        {{ $tags := .Site.Taxonomies.tags | sort }}
+        <ul class="tags">
+            {{ range first $limit $tags }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>{{ end }}
+        </ul>
+        {{ if gt (len $tags) $limit }}
+        <div class="tags"><a href="{{ "tags/" | relLangURL }}">{{ index .Site.Params.sidebar.tags "more-text" }}</a></div>
+        {{ end }}
+    </div>
+    {{ end }}
+    <nav class="links" aria-label="{{ i18n "links" }}">
+        <ul>
+            {{ with .Site.GetPage "/sidebar" }}
+            {{ range .Params.links }}
+            <li>{{ if .link }}<a href="{{ .link }}">{{ .name }}</a>{{ else }}<button type="button" disabled>{{ .name }}</button>{{ end }}</li>
+            {{ end }}
+            {{ end }}
+        </ul>
+    </nav>
+</aside>

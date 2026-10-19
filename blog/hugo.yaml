@@ -53,5 +53,6 @@ params:
   # but you can also create your colored theme at "/data/custom_themes.yaml"!
   theme: "meow"
   favicon: "/favicon.png?v=b967765b0ea8"
-  posts-per-page: 1 # defaults to 5 if not defined
+  posts-per-page: 2
+  moments-per-page: 2
   toc-auto-numbering: false

@@ -16,6 +16,14 @@ hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "htt
 
 本地与部署环境建议使用 Hugo Extended 0.156.0 或更高版本。以下保留上游 neopost 的原始使用说明及素材来源，其中 `example/` 指上游目录，本仓库使用 `blog/`。
 
+## 当前博客的内容维护
+
+- 首页的「喵喵动态」和「喵喵记录」各展示最新两条，右上角的「查看更多」进入对应列表。
+- 短动态放在 `blog/content/zh/moments/`（日文为 `blog/content/jp/moments/`），直接展示 Markdown 全文；`topics` 是展示用标签。动态列表每页两条，不生成单条动态详情页。现有两条动态标注为示例，可直接替换。
+- 文章继续放在 `blog/content/zh/posts/` 和 `blog/content/jp/posts/`，记录列表每页两篇，点击标题进入原来的文章地址。
+- 年龄、生日和 `likes` 喜好列表放在各语言的 `sidebar/basic-info.md`。旧 `welcome-header/` 内容保留为主题参考，首页不再显示欢迎板块。
+- 列表标题和导航文字放在 `i18n/zh.yaml`、`i18n/jp.yaml`；分页条数由 `blog/hugo.yaml` 中的 `posts-per-page` 和 `moments-per-page` 控制。
+
 ---
 
 # neopost

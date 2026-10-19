@@ -1,0 +1,17 @@
+<div class="record-list">
+    {{ range . }}
+    <div class="record{{ if index .Params "title-images" }} has-thumbnail{{ end }}">
+        <div class="record-body">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <div class="record-meta">{{ with .Params.author }}@{{ . }} · {{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006/01/02" }}</time></div>
+            <div class="record-summary">{{ .Summary | plainify | truncate 100 }}</div>
+            {{ with .Params.tags }}<div class="record-tags">{{ range $index, $tag := . }}{{ if $index }} · {{ end }}<a href="{{ printf "tags/%s/" ($tag | urlize) | relLangURL }}">#{{ $tag }}</a>{{ end }}</div>{{ end }}
+        </div>
+        {{ with index .Params "title-images" }}
+        <img class="record-thumbnail" src="{{ index . 0 }}" alt="" loading="lazy" width="83" height="102">
+        {{ end }}
+    </div>
+    {{ else }}
+    <p class="feed-empty">{{ i18n "no_records" }}</p>
+    {{ end }}
+</div>

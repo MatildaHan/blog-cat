@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div id="content" class="site-layout">
+    {{ partial "sidebar.html" . }}
+    <main class="site-main">
+        <article class="record-article">
+            <div class="article-heading">
+                <div>
+                    <h2>{{ .Title }}</h2>
+                    <div class="record-meta">{{ with .Params.author }}@{{ . }} · {{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006/01/02" }}</time></div>
+                </div>
+                {{ with .Site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">← {{ i18n "records" }}</a>{{ end }}
+            </div>
+            {{ if index .Params "table-of-contents" }}
+            <details class="article-toc"><summary>{{ i18n "table_of_contents" }}</summary>{{ partial "toc.html" . }}</details>
+            {{ end }}
+            <div class="article-body">
+                {{ .Summary }}
+                {{ with index .Params "title-images" }}
+                <div class="article-images">{{ range first 2 . }}<a href="{{ . }}" target="_blank" rel="noopener"><img src="{{ . }}" alt="" loading="lazy"></a>{{ end }}</div>
+                {{ end }}
+                <div id="full-content" class="auto-numbering">{{ .ContentWithoutSummary }}</div>
+                {{ with index .Params "ending-images" }}
+                <div class="article-images">{{ range first 3 . }}<a href="{{ . }}" target="_blank" rel="noopener"><img src="{{ . }}" alt="" loading="lazy"></a>{{ end }}</div>
+                {{ end }}
+            </div>
+            {{ with .Params.tags }}<div class="record-tags article-tags">{{ range $index, $tag := . }}{{ if $index }} · {{ end }}<a href="{{ printf "tags/%s/" ($tag | urlize) | relLangURL }}">#{{ $tag }}</a>{{ end }}</div>{{ end }}
+            <nav class="article-navigation" aria-label="{{ i18n "article_navigation" }}">
+                {{ with .Site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">← {{ i18n "all_records" }}</a>{{ end }}
+                {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ i18n "newer_record" }}: {{ .Title }}</a>{{ end }}
+                {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">{{ i18n "older_record" }}: {{ .Title }} →</a>{{ end }}
+            </nav>
+        </article>
+    </main>
+</div>
+{{ end }}

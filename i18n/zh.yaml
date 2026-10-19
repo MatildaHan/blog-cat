@@ -4,3 +4,39 @@ all_tags:
   other: "全部标签"
 language_switch:
   other: "切换语言"
+moments:
+  other: "喵喵动态"
+records:
+  other: "喵喵记录"
+view_more:
+  other: "查看更多"
+back_home:
+  other: "返回首页"
+about:
+  other: "关于甜甜"
+avatar:
+  other: "甜甜的猫咪头像"
+likes:
+  other: "我喜欢的事物："
+links:
+  other: "站点链接"
+no_moments:
+  other: "还没有动态，喵。"
+no_records:
+  other: "还没有记录，喵。"
+pagination:
+  other: "列表分页"
+previous_page:
+  other: "上一页"
+next_page:
+  other: "下一页"
+table_of_contents:
+  other: "目录"
+article_navigation:
+  other: "文章导航"
+all_records:
+  other: "全部记录"
+newer_record:
+  other: "上一篇"
+older_record:
+  other: "下一篇"
