@@ -115,7 +115,8 @@ test('resting can be requested or reached after 45 seconds, and a click wakes th
     s.advance(45000);
     assert.equal(s.root.dataset.state, 'resting');
     assert.equal(s.timers.size, 0);
-    assert.equal(s.elements.rest.textContent, '唤醒');
+    assert.equal(s.elements.rest.attributes['aria-label'], '唤醒');
+    assert.equal(s.elements.rest.attributes.title, '唤醒');
     assert.equal(s.elements.cat.attributes['aria-label'], '叫醒甜甜');
     s.elements.cat.emit('click');
     assert.equal(s.root.dataset.state, 'idle');

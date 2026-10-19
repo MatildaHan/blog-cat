@@ -12,7 +12,6 @@
     <span class="tiantian__bubble" role="status" aria-live="polite" aria-atomic="true" hidden>{{ partial "text.html" "tiantian_meow" }}</span>
     <div id="tiantian-panel" class="tiantian__panel">
         <span class="tiantian__sleep" aria-hidden="true"><span>Z</span><span>Z</span><span>Z</span></span>
-        <button class="tiantian__collapse" type="button" aria-label="{{ partial "text.html" "tiantian_collapse" }}" aria-controls="tiantian-panel" title="{{ partial "text.html" "tiantian_collapse" }}">{{ partial "text.html" "tiantian_collapse_short" }}</button>
         <button class="tiantian__cat" type="button" aria-label="{{ partial "text.html" "tiantian_pet" }}" title="{{ partial "text.html" "tiantian_pet" }}">
             <span class="tiantian__figure">
                 <img class="tiantian__idle" src="{{ $idle.RelPermalink }}" width="320" height="320" alt="" decoding="async">
@@ -23,8 +22,15 @@
             </span>
         </button>
         <div class="tiantian__actions">
-            <button class="tiantian__rest" type="button" aria-pressed="false">{{ partial "text.html" "tiantian_rest" }}</button>
-            <button class="tiantian__speak" type="button">{{ partial "text.html" "tiantian_speak" }}</button>
+            <button class="tiantian__rest" type="button" aria-label="{{ partial "text.html" "tiantian_rest" }}" title="{{ partial "text.html" "tiantian_rest" }}" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14a8.5 8.5 0 0 1-10-10A8.5 8.5 0 1 0 20 14Z"/></svg>
+            </button>
+            <button class="tiantian__speak" type="button" aria-label="{{ partial "text.html" "tiantian_speak" }}" title="{{ partial "text.html" "tiantian_speak" }}">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11a7 7 0 0 1-7 7H8l-5 3 1-6a7 7 0 0 1-1-4 7 7 0 0 1 7-7h3a7 7 0 0 1 7 7Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg>
+            </button>
+            <button class="tiantian__collapse" type="button" aria-label="{{ partial "text.html" "tiantian_collapse" }}" aria-controls="tiantian-panel" title="{{ partial "text.html" "tiantian_collapse" }}">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
         </div>
     </div>
     <button class="tiantian__launcher" type="button" aria-label="{{ partial "text.html" "tiantian_expand" }}" aria-controls="tiantian-panel" aria-expanded="false" title="{{ partial "text.html" "tiantian_expand" }}" hidden>

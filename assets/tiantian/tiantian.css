@@ -138,20 +138,6 @@
     font-size: 16px;
 }
 
-.tiantian__collapse {
-    position: absolute;
-    top: -8px;
-    right: 0;
-    display: grid;
-    place-items: center;
-    min-width: 32px;
-    height: 24px;
-    padding: 0 3px;
-    border: 0;
-    background: transparent;
-    z-index: 1;
-}
-
 .tiantian__launcher {
     display: block;
     width: 56px;
@@ -172,22 +158,36 @@
 .tiantian__actions {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    padding-top: 2px;
+    gap: 4px;
 }
 
 .tiantian__actions button {
-    padding: 1px 2px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
     border: 0;
     background: transparent;
-    font-size: 11px;
-    line-height: 1.5;
+    opacity: 0.8;
+}
+
+.tiantian__actions svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
 }
 
 .tiantian__actions button:hover,
-.tiantian__collapse:hover {
+.tiantian__actions button:focus-visible,
+.tiantian__actions button[aria-pressed="true"] {
     color: var(--accent-color);
-    text-decoration: underline;
+    opacity: 1;
 }
 
 .tiantian__bubble {

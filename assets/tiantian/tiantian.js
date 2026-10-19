@@ -85,7 +85,9 @@
         root.dataset.state = state;
         updatePose();
         bubble.hidden = state !== 'speaking';
-        restButton.textContent = state === 'resting' ? root.dataset.wakeText : root.dataset.restText;
+        const restLabel = state === 'resting' ? root.dataset.wakeText : root.dataset.restText;
+        restButton.setAttribute('aria-label', restLabel);
+        restButton.setAttribute('title', restLabel);
         restButton.setAttribute('aria-pressed', String(state === 'resting'));
         const label = state === 'resting' ? root.dataset.wakeLabel : root.dataset.petLabel;
         cat.setAttribute('aria-label', label);
