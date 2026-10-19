@@ -5,3 +5,4 @@
 /static/*
 /blog/public
 /blog/themes
+.DS_Store

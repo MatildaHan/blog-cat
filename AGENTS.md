@@ -11,7 +11,7 @@
 - `archetypes/`：新内容模板；`blog/content/`：中文、日语文章与侧栏内容。
 - `blog/hugo.yaml`、`blog/static/`：博客站点配置与静态资源。
 - `config.toml`、`theme.toml`：Hugo 版本要求与主题元信息；`README.md` 保留原主题使用说明。
-- `.github/workflows/neocities.yml`：现有 main 推送部署流程；`netlify.toml`：现有 Netlify 配置。修改前先阅读实际配置。
+- Cloudflare Pages：当前部署平台，通过 GitHub 集成自动部署；构建命令和输出目录见 `README.md`。
 
 ## 修改原则
 
@@ -55,7 +55,7 @@ hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --gc --minify 
 hugo server --source blog --themesDir ../.. --theme "$(basename "$PWD")" --bind 127.0.0.1
 ```
 
-现有 CI 与本地命令均通过 checkout 目录名显式指定主题，博客源目录为 `blog/`。涉及部署修改时，应核对运行环境与主题路径，实际检查成功后才能声称部署通过。
+Cloudflare Pages 与本地命令均通过 checkout 目录名显式指定主题，博客源目录为 `blog/`。涉及部署修改时，应核对平台设置、运行环境与主题路径，实际检查成功后才能声称部署通过。
 
 ## 提交与推送：默认自动执行
 
@@ -74,4 +74,4 @@ hugo server --source blog --themesDir ../.. --theme "$(basename "$PWD")" --bind 
 - 简要说明改了什么，以及检查结果和未验证项。
 - 提供分支、提交号和 GitHub 提交或 PR 链接，明确是否已进入 `main`。
 - 区分“本地完成”“已推送”“已合并”和“已部署”；只有观察到部署成功，才声称线上已更新。
-- 现有工作流在 main 推送时尝试部署到 Neocities，并依赖 `NEOCITIES_API_KEY`。推送成功不等于部署成功，不在任务外更改部署目标或密钥。
+- main 推送后，Cloudflare Pages 通过已关联的 GitHub 集成自动构建部署。推送成功不等于部署成功，须核对对应提交的部署状态；不在任务外更改部署目标或密钥。
