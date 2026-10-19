@@ -7,10 +7,10 @@
 - GitHub 仓库：<https://github.com/MatildaHan/blog-cat>，`origin` 应指向该仓库。
 - 当前项目是基于 neopost 的 Hugo 主题，博客内容存放在 `blog/`；保留简洁、猫咪主题和 neocities 风格。
 - `layouts/`：Hugo 模板；`layouts/partials/style.html`：主题样式；交互脚本目前也包含在页面模板中。
-- `data/themes.yaml`：内置配色；`blog/data/custom_themes.yaml`：博客站点自定义配色。
+- `blog/data/custom_themes.yaml`：当前唯一的猫爪与蓝色配色；`blog/data/interface.yaml`：双语界面文字。
 - `blog/content/`：每项内容一份双语 Markdown，包含文章、动态与侧栏资料；新增内容参考现有双语文件，格式见 `docs/bilingual-content.md`。
 - `blog/hugo.yaml`、`blog/static/`：博客站点配置与静态资源。
-- `config.toml`、`theme.toml`：Hugo 版本要求与主题元信息；`README.md` 保留原主题使用说明。
+- `config.toml`、`theme.toml`：Hugo 版本要求与主题元信息；`README.md` 说明当前用法、部署与原主题来源。
 - Cloudflare Pages：当前部署平台，通过 GitHub 集成自动部署；构建命令和输出目录见 `README.md`。
 
 ## 修改原则

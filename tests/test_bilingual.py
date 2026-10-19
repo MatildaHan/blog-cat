@@ -83,13 +83,13 @@ class BilingualBuildTests(unittest.TestCase):
         for number in range(1, 4):
             common = {"date": f"2025-01-0{number}T12:00:00+08:00", "author": "甜甜", "draft": False,
                       "table-of-contents": True, "toc-auto-numbering": True}
-            translations = {"zh": {"title": f"中文文章{number}", "tags": ["中文标签"]},
-                            "jp": {"title": f"日本語の記事{number}", "tags": ["日本語タグ"]}}
+            translations = {"zh": {"title": f"中文文章{number}", "description": "中文描述"},
+                            "jp": {"title": f"日本語の記事{number}", "description": "日本語の説明"}}
             bodies = {"zh": f"## 中文摘要{number}\n介绍。\n<!--more-->\n### 正文\n**中文内容**。",
                       "jp": f"## 日本語の紹介{number}\n紹介。\n<!--more-->\n### 本文\n**日本語の内容**。"}
             fixtures.append((f"posts/post-{number}.md", common, translations, bodies))
             fixtures.append((f"moments/moment-{number}.md", {"date": common["date"]},
-                             {"zh": {"title": "动态", "topics": ["话题"]}, "jp": {"title": "つぶやき", "topics": ["話題"]}},
+                             {"zh": {"title": "动态"}, "jp": {"title": "つぶやき"}},
                              {"zh": "短动态。", "jp": "短いつぶやき。"}))
         for relative, common, translations, bodies in fixtures:
             self.write(relative, dict(common, translations=translations), bodies)
@@ -127,15 +127,36 @@ class BilingualBuildTests(unittest.TestCase):
                 self.assertIn(title, (output / prefix / "posts/sample/index.html").read_text())
                 self.assertIn(title, (output / prefix / "index.xml").read_text())
 
+    def test_markdown_article_cover_and_removed_taxonomies(self):
+        self.write("posts/_index.md", {"translations": {"zh": {"title": "文章"}, "jp": {"title": "記事"}}}, {"zh": "", "jp": ""})
+        self.write("posts/example.md", {"cover": "/icon.png", "table-of-contents": True,
+                   "translations": {"zh": {"title": "示例文章", "cover_alt": "头像", "tags": ["旧标签"]},
+                                    "jp": {"title": "サンプル記事", "cover_alt": "アイコン", "tags": ["古いタグ"]}}},
+                   {"zh": "中文摘要。\n<!--more-->\n## 正文\n![头像](/icon.png)\n### 结尾\n中文结束。",
+                    "jp": "日本語の紹介。\n<!--more-->\n## 本文\n![アイコン](/icon.png)\n### おわり\n日本語のおわり。"})
+        output, _ = self.build()
+        for prefix, intro, rest, alt in [("", "中文摘要。", "中文结束。", "头像"), ("jp/", "日本語の紹介。", "日本語のおわり。", "アイコン")]:
+            with self.subTest(language=prefix or "zh"):
+                article = (output / prefix / "posts/example/index.html").read_text()
+                home = (output / prefix / "index.html").read_text()
+                self.assertEqual(article.count(intro), 2)  # meta description and body
+                self.assertIn(rest, article)
+                self.assertIn("/icon.png", article)
+                self.assertIn(alt, home)
+                self.assertIn("class=article-toc", article)
+                self.assertNotIn("/tags/", article)
+                self.assertFalse((output / prefix / "tags").exists())
+                self.assertFalse((output / prefix / "categories").exists())
+
     def test_single_language_and_localized_overrides(self):
-        self.write("posts/only.md", {"title": "公共标题", "tags": ["公共标签"], "draft": True,
-                   "translations": {"zh": {"title": "覆盖后的标题", "tags": ["覆盖标签"], "draft": False}}},
+        self.write("posts/only.md", {"title": "公共标题", "description": "公共描述", "draft": True,
+                   "translations": {"zh": {"title": "覆盖后的标题", "description": "覆盖后的描述", "draft": False}}},
                    {"zh": "只有中文。"})
         output, _ = self.build()
         html = (output / "posts/only/index.html").read_text()
         self.assertIn("覆盖后的标题", html)
-        self.assertIn("覆盖标签", html)
-        self.assertNotIn("公共标签", html)
+        self.assertIn("覆盖后的描述", html)
+        self.assertNotIn("公共描述", html)
         self.assertFalse((output / "jp/posts/only/index.html").exists())
         self.assertIn('href=/jp/', html)
 

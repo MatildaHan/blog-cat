@@ -1,16 +1,13 @@
 baseURL: 'https://blog-cat-5da.pages.dev/'
 languageCode: 'zh-cn'
 defaultContentLanguage: zh
-titleCaseStyle: 'none' # comment this line for forcing capitalized titles on tags
 theme: "neopost"
+disableKinds: [taxonomy, term]
 
 permalinks:
   posts: "/posts/:contentbasename/"
 
 params:
-  # themes made by neopost: light-blue, dark-blue, light-green, light-yellow, light-pink, light-purple
-  # but you can also create your colored theme at "/data/custom_themes.yaml"!
-  theme: "meow"
   favicon: "/favicon.png?v=b967765b0ea8"
   posts-per-page: 2
   moments-per-page: 2

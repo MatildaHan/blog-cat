@@ -14,19 +14,6 @@
         {{ .Content }}
     </div>
     {{ end }}
-    {{ if .Site.Params.sidebar.tags.enable }}
-    <div class="profile-tags">
-        <div class="tags"><p class="tags">{{ partial "text.html" "tags" }}</p></div>
-        {{ $limit := or (index .Site.Params.sidebar.tags "limit") 5 }}
-        {{ $tags := .Site.Taxonomies.tags | sort }}
-        <ul class="tags">
-            {{ range first $limit $tags }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>{{ end }}
-        </ul>
-        {{ if gt (len $tags) $limit }}
-        <div class="tags"><a href="{{ "tags/" | relLangURL }}">{{ partial "text.html" "more_tags" }}</a></div>
-        {{ end }}
-    </div>
-    {{ end }}
     <nav class="links" aria-label="{{ partial "text.html" "links" }}">
         <ul>
             {{ with .Site.GetPage "/sidebar" }}

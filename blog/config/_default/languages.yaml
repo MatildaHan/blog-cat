@@ -5,13 +5,6 @@ zh:
   weight: 1
   params:
     language-short: "中"
-    sidebar:
-      tags:
-        enable: false
-        limit: 2 # limit showcasing only up to this number of tags in bio, defaults to 5
-
-    read-more:
-      length-limit: 40 # if the text exceeds this number of characters, the read more button will appear to expand the text
 jp:
   languageCode: ja-jp
   languageName: 日本語
@@ -19,10 +12,3 @@ jp:
   weight: 2
   params:
     language-short: "日"
-    sidebar:
-      tags:
-        enable: false
-        limit: 2 # limit showcasing only up to this number of tags in bio, defaults to 5
-
-    read-more:
-      length-limit: 80 # if the text exceeds this number of characters, the read more button will appear to expand the text

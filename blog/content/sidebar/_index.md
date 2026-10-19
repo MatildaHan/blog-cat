@@ -1,6 +1,5 @@
 ---
 headless: true
-icon-use-flower-shape: false
 icon-path: "/icon.png?v=2065db7cd551"
 translations:
   zh:

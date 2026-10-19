@@ -13,17 +13,7 @@
             {{ if index .Params "table-of-contents" }}
             <details class="article-toc"><summary>{{ partial "text.html" "table_of_contents" }}</summary>{{ partial "toc.html" . }}</details>
             {{ end }}
-            <div class="article-body">
-                {{ .Summary }}
-                {{ with index .Params "title-images" }}
-                <div class="article-images">{{ range first 2 . }}<a href="{{ . }}" target="_blank" rel="noopener"><img src="{{ . }}" alt="" loading="lazy"></a>{{ end }}</div>
-                {{ end }}
-                <div id="full-content" class="auto-numbering">{{ .ContentWithoutSummary }}</div>
-                {{ with index .Params "ending-images" }}
-                <div class="article-images">{{ range first 3 . }}<a href="{{ . }}" target="_blank" rel="noopener"><img src="{{ . }}" alt="" loading="lazy"></a>{{ end }}</div>
-                {{ end }}
-            </div>
-            {{ with .Params.tags }}<div class="record-tags article-tags">{{ range $index, $tag := . }}{{ if $index }} · {{ end }}<a href="{{ printf "tags/%s/" ($tag | urlize) | relLangURL }}">#{{ $tag }}</a>{{ end }}</div>{{ end }}
+            <div class="article-body">{{ .Content }}</div>
             <nav class="article-navigation" aria-label="{{ partial "text.html" "article_navigation" }}">
                 {{ with .Site.GetPage "/posts" }}<a href="{{ .RelPermalink }}">← {{ partial "text.html" "all_records" }}</a>{{ end }}
                 {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ partial "text.html" "newer_record" }}: {{ .Title }}</a>{{ end }}

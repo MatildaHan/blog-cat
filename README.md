@@ -10,11 +10,15 @@
 - [`blog/config/_default/languages.yaml`](blog/config/_default/languages.yaml)：一份双语的网站标题与语言配置。
 - [`blog/data/interface.yaml`](blog/data/interface.yaml)：一份双语的按钮、分页和目录等界面文字。
 - [`blog/hugo.yaml`](blog/hugo.yaml)：域名、主题、开关和分页配置。
-- [`blog/data/custom_themes.yaml`](blog/data/custom_themes.yaml)：自定义配色。
+- [`blog/data/custom_themes.yaml`](blog/data/custom_themes.yaml)：当前唯一的猫爪与蓝色配色。
 - [`layouts/`](layouts/)：页面模板。
 - [`designs/tiantian/`](designs/tiantian/)：保留的猫咪设计稿；正式组件资源在 [`assets/tiantian/`](assets/tiantian/)。
 
 构建产物 `blog/public/` 和资源缓存 `blog/resources/` 不纳入 Git，可在停止预览后清理，下次构建会按需生成。`.DS_Store` 等本地系统文件同样不纳入 Git。
+
+## 示例文章
+
+[蓝色小角落里的第一声喵](blog/content/posts/blue-paw-diary.md) 是一篇中日双语示例，封面和正文复用当前头像。文章支持普通 Markdown、目录、摘要和分页；写新文章时复制这份文件即可。
 
 ## 本地预览
 
@@ -44,4 +48,4 @@ hugo --source blog --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "htt
 
 ## 来源与许可
 
-原主题由 [salatine](https://github.com/salatine) 开发，采用 [GPL-3.0 许可证](LICENSE)。原主题示例中的猫咪图片主要来自[美国国会图书馆](https://www.loc.gov/free-to-use/cats/)。协作规范见 [AGENTS.md](AGENTS.md)。
+原主题由 [salatine](https://github.com/salatine) 开发，采用 [GPL-3.0 许可证](LICENSE)。旧演示文章、图片、备用配色和标签／视频组件已移除；现有文章图片复用本站头像。协作规范见 [AGENTS.md](AGENTS.md)。

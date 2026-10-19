@@ -10,10 +10,6 @@
     
     <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}">
     
-    {{ if isset .Params "tags" }}
-    <meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">
-    {{ end }}
-    
     {{ partial "style.html" . }}
     {{ partial "feed-style.html" . }}
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +23,6 @@
 </header>
 <div class="page-body">
     {{ block "main" . }}{{ end }}
-    {{ if .Param "nextprev" }}{{ partial "nextprev.html" . }}{{ end }}
 </div>
 {{ partial "tiantian.html" . }}
 </body>
