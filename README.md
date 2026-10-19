@@ -7,9 +7,11 @@
 - [`blog/content/`](blog/content/)：每项内容一份双语 MD，上半部分中文、下半部分日文；`posts/` 存放文章，`moments/` 存放短动态，`sidebar/` 存放侧栏资料。
 - [双语内容维护说明](docs/bilingual-content.md)：文件格式、新增内容、单语发布与构建检查。Hugo 构建时自动生成对应语言页面，无需维护两份 MD。
 - [`blog/static/`](blog/static/)：图片等静态资源。
-- [`blog/hugo.yaml`](blog/hugo.yaml)：站点、语言和分页配置。
+- [`blog/config/_default/languages.yaml`](blog/config/_default/languages.yaml)：一份双语的网站标题与语言配置。
+- [`blog/data/interface.yaml`](blog/data/interface.yaml)：一份双语的按钮、分页和目录等界面文字。
+- [`blog/hugo.yaml`](blog/hugo.yaml)：域名、主题、开关和分页配置。
 - [`blog/data/custom_themes.yaml`](blog/data/custom_themes.yaml)：自定义配色。
-- [`layouts/`](layouts/)：页面模板；[`i18n/`](i18n/)：界面翻译。
+- [`layouts/`](layouts/)：页面模板。
 
 ## 本地预览
 

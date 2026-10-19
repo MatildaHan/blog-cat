@@ -9,6 +9,6 @@
         </li>
         {{ end }}
     </ul>
-    <p style="margin-top: 2.5rem;"><a href="{{ relLangURL (printf "/tags") }}">{{ i18n "all_tags" }}</a></p>
+    <p style="margin-top: 2.5rem;"><a href="{{ relLangURL (printf "/tags") }}">{{ partial "text.html" "all_tags" }}</a></p>
 </article>
 {{ end }}

@@ -5,8 +5,8 @@
         {{ $paginator := .Paginate .RegularPages.ByDate.Reverse (or (index .Site.Params "posts-per-page") 2) }}
         <section class="feed-panel records-panel" aria-labelledby="records-heading">
             <div class="feed-heading">
-                <h2 id="records-heading">{{ i18n "records" }}</h2>
-                <a href="{{ .Site.Home.RelPermalink }}">← {{ i18n "back_home" }}</a>
+                <h2 id="records-heading">{{ .Title }}</h2>
+                <a href="{{ .Site.Home.RelPermalink }}">← {{ partial "text.html" "back_home" }}</a>
             </div>
             {{ partial "record-list.html" $paginator.Pages }}
         </section>

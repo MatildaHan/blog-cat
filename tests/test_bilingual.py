@@ -27,6 +27,8 @@ class BilingualBuildTests(unittest.TestCase):
         self.site = self.root / "site"
         (self.site / "content").mkdir(parents=True)
         shutil.copytree(ROOT / "blog/adapters", self.site / "adapters")
+        shutil.copytree(ROOT / "blog/config", self.site / "config")
+        shutil.copytree(ROOT / "blog/data", self.site / "data")
         self.config = (ROOT / "blog/hugo.yaml").read_text()
         (self.site / "hugo.yaml").write_text(self.config)
 
@@ -59,8 +61,12 @@ class BilingualBuildTests(unittest.TestCase):
         reference = self.root / "reference"
         reference.mkdir()
         config = self.config.split("# Read each bilingual")[0]
-        config = config.replace("  zh:\n", "  zh:\n    contentDir: content/zh\n", 1)
-        config = config.replace("  jp:\n", "  jp:\n    contentDir: content/jp\n", 1)
+        shutil.copytree(self.site / "config", reference / "config")
+        shutil.copytree(self.site / "data", reference / "data")
+        languages = reference / "config/_default/languages.yaml"
+        settings = languages.read_text().replace("zh:\n", "zh:\n  contentDir: content/zh\n", 1)
+        settings = settings.replace("jp:\n", "jp:\n  contentDir: content/jp\n", 1)
+        languages.write_text(settings)
         (reference / "hugo.yaml").write_text(config)
         fixtures = [
             ("posts/_index.md", {}, {"zh": {"title": "记录"}, "jp": {"title": "記録"}}, {"zh": "", "jp": ""}),
@@ -102,6 +108,24 @@ class BilingualBuildTests(unittest.TestCase):
         self.assertTrue((actual / "posts/page/2/index.html").exists())
         self.assertTrue((actual / "jp/moments/page/2/index.html").exists())
         self.assertFalse((actual / "moments/moment-1/index.html").exists())
+
+    def test_editing_bilingual_settings_updates_both_languages(self):
+        languages = self.site / "config/_default/languages.yaml"
+        languages.write_text(languages.read_text().replace("甜甜の博客", "中文新站名").replace("甜甜のブログ", "日本語の新サイト名"))
+        interface = self.site / "data/interface.yaml"
+        interface.write_text(interface.read_text().replace("查看更多", "查看新内容").replace("もっと見る", "新しい内容を見る"))
+        self.write("posts/_index.md", {"translations": {"zh": {"title": "中文新栏目"}, "jp": {"title": "日本語の新しい記録"}}}, {"zh": "", "jp": ""})
+        self.write("posts/sample.md", {"translations": {"zh": {"title": "文章"}, "jp": {"title": "記事"}}}, {"zh": "中文。", "jp": "日本語。"})
+        output, _ = self.build()
+        for prefix, title, heading in [("", "中文新站名", "中文新栏目"), ("jp/", "日本語の新サイト名", "日本語の新しい記録")]:
+            with self.subTest(language=prefix or "zh"):
+                home = (output / prefix / "index.html").read_text()
+                self.assertIn(title, home)
+                self.assertIn(heading, home)
+                self.assertIn("查看新内容" if not prefix else "新しい内容を見る", home)
+                self.assertIn(heading, (output / prefix / "posts/index.html").read_text())
+                self.assertIn(title, (output / prefix / "posts/sample/index.html").read_text())
+                self.assertIn(title, (output / prefix / "index.xml").read_text())
 
     def test_single_language_and_localized_overrides(self):
         self.write("posts/only.md", {"title": "公共标题", "tags": ["公共标签"], "draft": True,

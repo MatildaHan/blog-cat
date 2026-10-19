@@ -1,5 +1,5 @@
 {{ if hugo.IsMultilingual }}
-<nav class="languages" aria-label="{{ i18n "language_switch" }}">
+<nav class="languages" aria-label="{{ partial "text.html" "language_switch" }}">
     <ul>
     {{ range .Site.Home.AllTranslations }}
         {{ $language := .Language.Lang }}

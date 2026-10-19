@@ -1,11 +1,32 @@
 # 双语内容维护
 
+## 文字维护位置
+
+同一项内容的中文和日文放在同一份文件中，按下表查找即可：
+
+| 要修改的内容 | 唯一维护文件 | 中文与日文的位置 |
+| --- | --- | --- |
+| 网站总标题、语言名称与「中 / 日」按钮 | [languages.yaml](../blog/config/_default/languages.yaml) | `zh` 和 `jp` 两段配置 |
+| 按钮、分页、目录及待机猫提示文字 | [interface.yaml](../blog/data/interface.yaml) | `zh` 和 `jp` 两段文字 |
+| 年龄、生日、喜欢 | [basic-info.md](../blog/content/sidebar/basic-info.md) | 中文正文在上，日文正文在下 |
+| 左侧个人简介 | [bio.md](../blog/content/sidebar/bio.md) | 中文正文在上，日文正文在下 |
+| 左侧链接名称、链接地址与共用头像 | [sidebar/_index.md](../blog/content/sidebar/_index.md) | 名称按 `translations.zh/jp` 区分；共用值放顶层 |
+| 文章标题、标签、摘要和正文 | 每篇自己的 [posts/](../blog/content/posts/) 下的 MD | 标题与标签放 `translations.zh/jp`；正文上下分段 |
+| 动态标题、话题和正文 | 每条自己的 [moments/](../blog/content/moments/) 下的 MD | 标题与话题放 `translations.zh/jp`；正文上下分段 |
+| 栏目页面标题 | 对应目录的 `_index.md` | `translations.zh.title` 和 `translations.jp.title`，同时用于首页栏目、列表标题和文章返回链接 |
+
+网站标题与界面短文字使用双语 YAML，文章和侧栏正文使用双语 Markdown。技术配置（域名、主题、开关、分页条数）保留在 `blog/hugo.yaml`；不需要再到两份语言文件中分别修改同一项内容。
+
+`interface.yaml` 中，每个文字键在 `zh`、`jp` 下各有一个值。缺少某项日文时回退到中文；两种语言都缺少该项时构建会报错，避免发布空按钮。
+
+## 内容规则
+
 - 首页的「喵喵动态」和「喵喵记录」各展示最新两条，右上角的「查看更多」进入对应列表。
 - 短动态放在 `blog/content/moments/`，直接展示当前语言的 Markdown 全文；`topics` 是展示用标签。动态列表每页两条，不生成单条动态详情页。现有两条动态标注为示例，可直接替换。
 - 文章放在 `blog/content/posts/`，记录列表每页两篇；中文文章地址仍为 `/posts/文件名/`，日文为 `/jp/posts/文件名/`。修改标题不会改变地址。
 - 年龄、生日、喜欢等资料放在 `blog/content/sidebar/basic-info.md` 对应语言的正文中，每项使用 `- 图标 名称：内容` 的 Markdown 列表格式；新增资料直接追加一行。`sidebar/bio.md` 是简介，`sidebar/_index.md` 是头像与链接。
 - 旧 `blog/content/welcome-header/` 保留为主题参考，首页不显示欢迎板块。
-- 列表标题和导航文字放在 `i18n/zh.yaml`、`i18n/jp.yaml`；站点语言和分页条数继续由 `blog/hugo.yaml` 控制。
+- 栏目名称统一读取对应目录的 `_index.md`，首页、列表和文章返回链接会一起更新。按钮与导航文字放在 `blog/data/interface.yaml`；网站标题与语言名称放在 `blog/config/_default/languages.yaml`。分页条数继续由 `blog/hugo.yaml` 控制。
 
 ### 双语 Markdown 格式
 

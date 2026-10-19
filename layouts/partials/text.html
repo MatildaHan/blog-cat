@@ -1,0 +1,9 @@
+{{- /* All interface translations live in blog/data/interface.yaml. */ -}}
+{{- $messages := site.Data.interface | default dict -}}
+{{- $localized := index $messages site.Language.Lang | default dict -}}
+{{- $default := index $messages "zh" | default dict -}}
+{{- $text := index $localized . | default (index $default .) -}}
+{{- if not $text -}}
+  {{- errorf "blog/data/interface.yaml: missing interface text %q for %s" . site.Language.Lang -}}
+{{- end -}}
+{{- return $text -}}
