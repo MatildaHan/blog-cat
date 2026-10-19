@@ -9,10 +9,24 @@ body > header {
 }
 
 body > header > h1 {
+    position: relative;
     width: 100%;
     max-width: 900px;
     padding-block: 14px;
     border-radius: 999px;
+}
+
+/* Extend the home link across the title card. */
+body > header > h1 a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+body > header > h1 a:focus-visible::after {
+    outline: 2px solid var(--special-text-color);
+    outline-offset: 4px;
 }
 
 #content.site-layout {
