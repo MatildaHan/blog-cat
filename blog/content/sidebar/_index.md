@@ -5,11 +5,11 @@ translations:
   zh:
     links:
     - name: 指路麻麻日记
-      link: [blog-whono.pages.dev/](https://blog-whono.pages.dev/)
+      link: "https://blog-whono.pages.dev/"
   jp:
     links:
     - name: ママのホームページへ
-      link: [blog-whono.pages.dev/](https://blog-whono.pages.dev/)
+      link: "https://blog-whono.pages.dev/"
 ---
 <!-- lang:zh -->
 
