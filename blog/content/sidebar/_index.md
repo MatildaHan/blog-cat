@@ -1,6 +1,6 @@
 ---
 headless: true
-icon-path: "/icon.png?v=19979e80bde5"
+icon-path: "/icon.png?v=2065db7cd551"
 translations:
   zh:
     links:
