@@ -5,11 +5,11 @@ translations:
   zh:
     links:
     - name: 指路麻麻主页
-      link: https://firefly-8vy.pages.dev/
+      link: blog-whono.pages.dev/
   jp:
     links:
     - name: ママのホームページへ
-      link: https://firefly-8vy.pages.dev/
+      link: blog-whono.pages.dev/
 ---
 <!-- lang:zh -->
 
