@@ -8,7 +8,7 @@
                 <h2 id="moments-heading">{{ .Title }}</h2>
                 <a href="{{ .RelPermalink }}">{{ partial "text.html" "view_more" }} →</a>
             </div>
-            {{ partial "moment-list.html" (first 2 .RegularPages.ByDate.Reverse) }}
+            {{ partial "moment-list.html" (first 1 .RegularPages.ByDate.Reverse) }}
         </section>
         {{ end }}
         {{ with .Site.GetPage "/posts" }}
