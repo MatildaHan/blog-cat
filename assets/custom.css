@@ -1,0 +1,15 @@
+/* 引入本地字体 */
+@font-face {
+  font-family: 'LiMuHeYuan'; 
+  /* 注意路径，/fonts/ 对应 assets/fonts/ 经过 Hugo 处理后的公开路径 */
+  src: url('/fonts/limimuheyuanti.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 应用到全站 */
+body, h1, h2, h3, h4, h5, h6 {
+  /* 加上 !important 是为了防止被原有的主题样式覆盖 */
+  font-family: 'LiMuHeYuan', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
