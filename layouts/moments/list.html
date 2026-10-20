@@ -2,15 +2,13 @@
 <div id="content" class="site-layout">
     {{ partial "sidebar.html" . }}
     <main class="site-main">
-        {{ $paginator := .Paginate .RegularPages.ByDate.Reverse (or (index .Site.Params "moments-per-page") 2) }}
         <section class="feed-panel moments-panel" aria-labelledby="moments-heading">
             <div class="feed-heading">
                 <h2 id="moments-heading">{{ .Title }}</h2>
                 <a href="{{ .Site.Home.RelPermalink }}">← {{ partial "text.html" "back_home" }}</a>
             </div>
-            {{ partial "moment-list.html" $paginator.Pages }}
+            {{ partial "moment-list.html" .RegularPages.ByDate.Reverse }}
         </section>
-        {{ partial "feed-pagination.html" $paginator }}
     </main>
 </div>
 {{ end }}

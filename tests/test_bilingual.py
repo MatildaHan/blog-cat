@@ -106,7 +106,15 @@ class BilingualBuildTests(unittest.TestCase):
             with self.subTest(output=name):
                 self.assertEqual(actual_files[name], expected_files[name], name)
         self.assertTrue((actual / "posts/page/2/index.html").exists())
-        self.assertTrue((actual / "jp/moments/page/2/index.html").exists())
+        for prefix in ("", "jp/"):
+            moments = (actual / prefix / "moments/index.html").read_text()
+            positions = [moments.index(f"id=moment-moment-{number}") for number in (3, 2, 1)]
+            self.assertEqual(positions, sorted(positions))
+            self.assertFalse((actual / prefix / "moments/page/2/index.html").exists())
+            home = (actual / prefix / "index.html").read_text()
+            self.assertIn("id=moment-moment-3", home)
+            self.assertIn("id=moment-moment-2", home)
+            self.assertNotIn("id=moment-moment-1", home)
         self.assertFalse((actual / "moments/moment-1/index.html").exists())
 
     def test_editing_bilingual_settings_updates_both_languages(self):

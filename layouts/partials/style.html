@@ -4,8 +4,8 @@
    ========================================== */
 @font-face {
     font-family: 'LiMuHeYuan';
-    /* 字体存放在 assets/fonts/，编译后根路径为 /fonts/ */
-    src: url('/assets/fonts/limimuheyuanti.woff2')format('woff2');
+    {{ $font := resources.Get "fonts/limimuheyuanti.woff2" | fingerprint }}
+    src: url('{{ $font.RelPermalink }}') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
