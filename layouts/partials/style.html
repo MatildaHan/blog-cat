@@ -1,4 +1,19 @@
 <style>
+/* ==========================================
+   1. 引入自定义字体 (添加在顶部)
+   ========================================== */
+@font-face {
+    font-family: 'LiMuHeYuan';
+    /* 字体存放在 assets/fonts/，编译后根路径为 /fonts/ */
+    src: url('/fonts/limimuheyuanti.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================
+   2. 原有主题变量配置
+   ========================================== */
 {{ $theme := .Site.Data.custom_themes }}
 
 :root {
@@ -18,9 +33,13 @@
     --list-style-image: url("{{ (index $theme "list-style").image }}");
 }
 
+/* ==========================================
+   3. 全局样式及字体应用 (已修改)
+   ========================================== */
 * {
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* 将原来的 Verdana 等替换为了你的字体，保留 sans-serif 作为后备 */
+    font-family: 'LiMuHeYuan', sans-serif !important; 
 }
 
 @-moz-document url-prefix() {
